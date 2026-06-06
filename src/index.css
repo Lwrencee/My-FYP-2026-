@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* THEME SYSTEM VARIABLES */
+
+/* 1. Light Theme Definitions (Vibrant Silver & Azure Blue Theme) */
+:root, [data-theme="light"] {
+  --theme-bg: #EDF2F9;            /* Soft silver-blue outer */
+  --theme-card: #FFFFFF;          /* Pure white cards */
+  --theme-darker: #E4ECF5;        /* Sub-panels container */
+  --theme-border: #D0DBEA;        /* Crisp blue-grey dividers */
+  --theme-text-bright: #0F172A;   /* Deep charcoal titles */
+  --theme-text-primary: #334155;  /* Slate body text */
+  --theme-text-muted: #64748B;    /* Neutral steel descriptions */
+  --theme-text-accent: #1D4ED8;   /* Electric Cobalt Royal Blue */
+  --theme-scrollbar-thumb: #CBD5E1;
+  --theme-btn-secondary: #D0DBEA; /* Clear slate bluish-gray background */
+  --theme-btn-secondary-hover: #C0CFE3;
+}
+
+/* 2. Dark Theme Definitions (Vivid Radiant Navy & Cyan-Blue Default Theme) */
+[data-theme="dark"] {
+  --theme-bg: #0A0F24;            /* Stellar cosmic dark-blue background */
+  --theme-card: #121A3D;          /* Rich navy container panels */
+  --theme-darker: #0D132D;        /* Deeper command ledger console */
+  --theme-border: #22316C;        /* Electric neon-blue boundaries */
+  --theme-text-bright: #F8FAFC;   /* Crisp pristine text headers */
+  --theme-text-primary: #CBD5E1;  /* Cool metal silver body text */
+  --theme-text-muted: #8E9DB2;    /* Dim light steel descriptions */
+  --theme-text-accent: #38BDF8;   /* Vivid sky cyan-blue highlight */
+  --theme-scrollbar-thumb: #2D3E82;
+  --theme-btn-secondary: #30363D;  /* Original dark mode gray */
+  --theme-btn-secondary-hover: #3E4752;
+}
+
+/* Apply CSS Variables to Body */
+body {
+  background-color: var(--theme-bg);
+  color: var(--theme-text-primary);
+  font-family: var(--font-sans);
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* CUSTOM HIGH-CONTRAST SCROLLER DEFINITION */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--theme-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--theme-scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-text-accent);
+}
+
+/* DYNAMIC HOOKS: OVERRIDING HEX UTILITY CLASSES DIRECTLY */
+.bg-\[\#0D0F12\] {
+  background-color: var(--theme-bg) !important;
+}
+.bg-\[\#161B22\] {
+  background-color: var(--theme-card) !important;
+}
+.bg-\[\#30363D\] {
+  background-color: var(--theme-btn-secondary) !important;
+}
+.hover\:bg-\[\#30363D\]\/80:hover {
+  background-color: var(--theme-btn-secondary-hover) !important;
+}
+.border-\[\#30363D\] {
+  border-color: var(--theme-border) !important;
+}
+.border-b-\[\#30363D\] {
+  border-bottom-color: var(--theme-border) !important;
+}
+.border-t-\[\#30363D\] {
+  border-top-color: var(--theme-border) !important;
+}
+.border-r-\[\#30363D\] {
+  border-right-color: var(--theme-border) !important;
+}
+.divide-\[\#30363D\]\/40 > * + * {
+  border-color: rgba(34, 49, 108, 0.45) !important;
+}
+[data-theme="light"] .divide-\[\#30363D\]\/40 > * + * {
+  border-color: rgba(208, 219, 234, 0.7) !important;
+}
+
+/* Dynamic text coloring variables list */
+.text-\[\#F0F6FC\] {
+  color: var(--theme-text-bright) !important;
+}
+.text-\[\#E2E8F0\] {
+  color: var(--theme-text-primary) !important;
+}
+.text-\[\#8B949E\] {
+  color: var(--theme-text-muted) !important;
+}
+.placeholder-\[\#8B949E\]\/50::placeholder {
+  color: var(--theme-text-muted) !important;
+  opacity: 0.6;
+}
+
+/* Enhance input styling for accessibility */
+input, select {
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+[data-theme="light"] input, [data-theme="light"] select {
+  background-color: var(--theme-bg) !important;
+  color: var(--theme-text-bright) !important;
+  border-color: var(--theme-border) !important;
+}
+
+[data-theme="light"] .bg-\[\#1f242c\] {
+  background-color: #E2ECF6 !important;
+}
+
+/* Markdown styling overrides since Tailwind resets typography */
+.markdown-body {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.markdown-body strong {
+  font-weight: 700;
+  color: var(--theme-text-bright);
+}
+
+.markdown-body em {
+  font-style: italic;
+}
+
+.markdown-body p {
+  margin-bottom: 1.5rem;
+}
+
+.markdown-body ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-body li {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-body a {
+  color: var(--theme-text-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.markdown-body a:hover {
+  opacity: 0.8;
+  text-decoration-thickness: 2px;
+}

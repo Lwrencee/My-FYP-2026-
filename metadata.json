@@ -1,0 +1,6 @@
+{
+  "name": "AegisAcademy",
+  "description": "A gamified cyber hygiene learning application designed for undergraduates across Nigeria to improve cybersecurity knowledge and security habits.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

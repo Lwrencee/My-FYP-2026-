@@ -1,0 +1,277 @@
+src/types.ts:14:  completedQuizzes: string[]; // Quiz IDs
+src/types.ts:15:  completedChecklist: string[]; // Task IDs
+src/types.ts:16:  completedGames: string[]; // Game IDs
+src/types.ts:17:  completedCourses?: string[]; // Course IDs
+src/types.ts:27:  iconName: string; // lucide icon name
+src/types.ts:45:  content: string; // Markdown / Text content
+src/types.ts:80:  interactiveGuide: string[]; // Step by step instructions
+src/types.ts:101:  clues: string[]; // elements that make it suspicious (e.g., misspelled domain, urgeny)
+src/types.ts:110:  connectsTo?: number; // Target cell index if snake or ladder
+src/types.ts:111:  message?: string; // Reason for snake or ladder
+src/types.ts:112:  habitName?: string; // E.g., "Enabled 2FA" or "Clicked Phishing link"
+src/components/TutorialOverlay.tsx:31:  // Re-eval target element when step changes
+src/components/TutorialOverlay.tsx:48:  // Keep bounding box updated on every frame (so scroll matches frame perfectly)
+src/components/FinalQuizView.tsx:23:    // Select the appropriate quiz based on the module level
+src/components/FinalQuizView.tsx:31:    // Randomize and pick 10
+src/components/FinalQuizView.tsx:42:    if (selectedOption !== null) return; // Prevent changing answer
+src/components/FinalQuizView.tsx:59:    return score * 5; // 5xp per right question
+src/components/LeaderboardView.tsx:39:  // Build dynamic leaderboard list by injecting active user state
+src/components/LeaderboardView.tsx:45:    university: profile.university || 'Caleb University', // Use saved profile university
+src/components/LeaderboardView.tsx:49:  // Merge, remove any mock that matches username if already there, and sort descending
+src/components/LeaderboardView.tsx:58:  // Compute aggregate stats per university dynamically!
+src/components/PixelAvatar.tsx:15:// 12x12 detailed pixel-art avatars matching the uploaded image exactly
+src/components/PixelAvatar.tsx:21:  '1': { // Bucket Hat Defender (The top character in the user's image)
+src/components/PixelAvatar.tsx:25:      'w': '#FFFFFF', // white bucket hat
+src/components/PixelAvatar.tsx:26:      'b': '#58A6FF', // blue hat stripe
+src/components/PixelAvatar.tsx:27:      's': '#9C6644', // brown skin
+src/components/PixelAvatar.tsx:28:      'h': '#FFD166', // blonde hair
+src/components/PixelAvatar.tsx:29:      'e': '#000000', // eyes
+src/components/PixelAvatar.tsx:30:      'g': '#06D6A0', // mint green shirt
+src/components/PixelAvatar.tsx:31:      'p': '#8338EC', // purple suspender straps
+src/components/PixelAvatar.tsx:32:      'd': '#7F5539', // darker brown shadow
+src/components/PixelAvatar.tsx:49:  '2': { // Cap Cyber Rogue (The middle character in the user's image)
+src/components/PixelAvatar.tsx:53:      'w': '#FFFFFF', // white cap
+src/components/PixelAvatar.tsx:54:      'l': '#8957E5', // lavender/purple logo on cap
+src/components/PixelAvatar.tsx:55:      's': '#B07D62', // medium brown skin
+src/components/PixelAvatar.tsx:56:      'h': '#FF6B6B', // reddish-pink hair peeking out
+src/components/PixelAvatar.tsx:57:      'e': '#000000', // eyes
+src/components/PixelAvatar.tsx:58:      'p': '#6C3082', // purple shirt
+src/components/PixelAvatar.tsx:59:      'k': '#1A1D20', // dark stripe/collar
+src/components/PixelAvatar.tsx:60:      'd': '#8D5B4C', // shadow skin
+src/components/PixelAvatar.tsx:65:      '...wwlwwwww.', // Cap visor extending to the right
+src/components/PixelAvatar.tsx:77:  '3': { // Visor Scout (The bottom character in the user's image)
+src/components/PixelAvatar.tsx:81:      'w': '#FFFFFF', // white/light cap
+src/components/PixelAvatar.tsx:82:      'b': '#8ECAE6', // blue shaded visor area
+src/components/PixelAvatar.tsx:83:      's': '#F1C0B1', // light pinkish skin
+src/components/PixelAvatar.tsx:84:      'h': '#FF79C6', // pink hair
+src/components/PixelAvatar.tsx:85:      'e': '#12131C', // eyes
+src/components/PixelAvatar.tsx:86:      'c': '#212529', // dark charcoal shirt
+src/components/PixelAvatar.tsx:87:      'l': '#E5E5E5', // light collar lines
+src/components/PixelAvatar.tsx:88:      'd': '#E09F8F', // shadowed light skin
+src/components/PixelAvatar.tsx:94:      '..wbbbbbw...', // Visor shade
+src/components/PixelAvatar.tsx:105:  '4': { // Matrix Cadet (Cyber Sentry with Green Visor and Black Cap)
+src/components/PixelAvatar.tsx:109:      'c': '#161B22', // charcoal cap
+src/components/PixelAvatar.tsx:110:      'g': '#3FB950', // neon green visor
+src/components/PixelAvatar.tsx:111:      's': '#E7C697', // skin tone
+src/components/PixelAvatar.tsx:112:      'h': '#111111', // black hair
+src/components/PixelAvatar.tsx:113:      'e': '#3FB950', // cybernetic green eye
+src/components/PixelAvatar.tsx:114:      'j': '#238636', // tech green jacket
+src/components/PixelAvatar.tsx:121:      '..cgggggwc..', // cyber visor
+src/components/PixelAvatar.tsx:132:  '5': { // Neon Valkyrie (Cyberpunk Magenta Hair and Gold Jacket)
+src/components/PixelAvatar.tsx:136:      'p': '#FF4D6D', // bright pink hair
+src/components/PixelAvatar.tsx:137:      's': '#F4D35E', // skin tone
+src/components/PixelAvatar.tsx:138:      'h': '#F28482', // pastel pink
+src/components/PixelAvatar.tsx:139:      'e': '#000814', // dark eyes
+src/components/PixelAvatar.tsx:140:      'y': '#FFB703', // golden jacket
+src/components/PixelAvatar.tsx:141:      'w': '#FFFFFF', // visor/headband
+src/components/PixelAvatar.tsx:142:      'd': '#E29578', // shaded skin
+src/components/PixelAvatar.tsx:148:      '..pwwwwwp...', // Headband
+src/components/PixelAvatar.tsx:159:  '6': { // Void Overseer (Mysterious Tech Cyber Drone / Hooded Sentry)
+src/components/PixelAvatar.tsx:163:      'h': '#1F2421', // dark shadow hood
+src/components/PixelAvatar.tsx:164:      'r': '#F85149', // crimson red cyber energy
+src/components/PixelAvatar.tsx:165:      's': '#D90429', // deep red glowing
+src/components/PixelAvatar.tsx:166:      'm': '#30363D', // tech armor
+src/components/PixelAvatar.tsx:167:      'w': '#FFFFFF', // glowing white visor
+src/components/PixelAvatar.tsx:175:      '..hrwwhwrh..', // glowing white energy visor
+src/components/PixelAvatar.tsx:184:  '7': { // Chronos Sentry (Aquamarine Cap & Teal Hoodie Boy)
+src/components/PixelAvatar.tsx:188:      't': '#008080', // teal cap
+src/components/PixelAvatar.tsx:189:      'w': '#FFFFFF', // white strip
+src/components/PixelAvatar.tsx:190:      's': '#E0AC9D', // brown/tan skin
+src/components/PixelAvatar.tsx:191:      'h': '#F4A261', // orange hair
+src/components/PixelAvatar.tsx:193:      'c': '#2A9D8F', // light teal hoodie
+src/components/PixelAvatar.tsx:198:      '...ttwttttt.', // cap visor
+src/components/PixelAvatar.tsx:210:  's': { // Archon Guard (Royal Gold Crown Sentry / Elite Graduate)
+src/components/PixelAvatar.tsx:214:      'c': '#FFD700', // gold crown
+src/components/PixelAvatar.tsx:215:      'b': '#1F6FEB', // sapphire gems
+src/components/PixelAvatar.tsx:216:      's': '#F1C0B1', // skin tone
+src/components/PixelAvatar.tsx:217:      'h': '#8338EC', // purple futuristic hair
+src/components/PixelAvatar.tsx:218:      'e': '#FFD166', // yellow cyber visor
+src/components/PixelAvatar.tsx:219:      'r': '#D90429', // royal crimson cape
+src/components/PixelAvatar.tsx:224:      '..cccbccc...', // gold gemmed crown
+src/components/PixelAvatar.tsx:225:      '..hheeeehh..', // visor eyes
+src/components/PixelAvatar.tsx:229:      '..rrrrrrr...', // royal cape
+src/components/PixelAvatar.tsx:239:  size?: number; // width and height in px
+src/components/PixelAvatar.tsx:244:  // Support custom uploaded base64 or URL image files
+src/components/PixelAvatar.tsx:264:  // Graceful fallback to id '1' if not found
+src/components/PixelAvatar.tsx:289:        xmlns="http://www.w3.org/2000/svg"
+src/components/PixelAvatar.tsx:304:                width={1.05} // slightly wider to avoid pixel gaps in rendering
+src/components/ProfileView.tsx:69:        // Compress image using canvas
+src/components/ProfileView.tsx:96:          setSelectedAvatarId('custom'); // pseudo-id to indicate custom image
+src/components/ProfileView.tsx:115:      // Award initiate badge if not already present
+src/components/ProfileView.tsx:140:  // Math totals for achievements certification
+src/components/ProfileView.tsx:146:  // Formatted date
+src/components/ChecklistView.tsx:88:  // Helper icons for tasks
+src/components/RaceToServersGame.tsx:46:// 5 Ladder scenarios (Proactive defense)
+src/components/RaceToServersGame.tsx:90:// 5 Snake scenarios (Hazard - Defend or slide) + 2 New Snake scenarios
+src/components/RaceToServersGame.tsx:174:// Set up the board data
+src/components/RaceToServersGame.tsx:175:// Grid coordinates for player movement calculations
+src/components/RaceToServersGame.tsx:177:  idx: number; // 1 to 49
+src/components/RaceToServersGame.tsx:183:// Spacing out 4 ladders and 7 snakes on 7x7 board perfectly
+src/components/RaceToServersGame.tsx:211:  // Game log feed (narrative logs)
+src/components/RaceToServersGame.tsx:216:  // Modal State for Scenarios
+src/components/RaceToServersGame.tsx:228:  // Transition Popup state
+src/components/RaceToServersGame.tsx:241:  // Automatically trigger Hacker AI Turn rolls
+src/components/RaceToServersGame.tsx:251:  // Stepping Animation for Player (moderate walk speed for normal moves, slightly faster for long slides/climbs)
+src/components/RaceToServersGame.tsx:269:  // Stepping Animation for Hacker (moderate walk speed for normal moves, slightly faster for long slides/climbs)
+src/components/RaceToServersGame.tsx:287:  // Roll dice for the active character
+src/components/RaceToServersGame.tsx:307:  // Move the student (Player) step-by-step
+src/components/RaceToServersGame.tsx:329:      // Reward points securely
+src/components/RaceToServersGame.tsx:357:    // Check if the target position triggers a snake or a ladder
+src/components/RaceToServersGame.tsx:359:      // Trigger Ladder Scenario (Challenge)
+src/components/RaceToServersGame.tsx:361:      // Pick random ladder scenario
+src/components/RaceToServersGame.tsx:379:      // Trigger Snake Scenario (Hazard)
+src/components/RaceToServersGame.tsx:381:      // Pick random snake scenario
+src/components/RaceToServersGame.tsx:399:      // Clean square, turn passes to Hacker
+src/components/RaceToServersGame.tsx:407:  // Submit Answer in Scenario Modal
+src/components/RaceToServersGame.tsx:417:  // Close Scenario modal and pass turn
+src/components/RaceToServersGame.tsx:442:    } else { // snake
+src/components/RaceToServersGame.tsx:461:  // Close Transition Popup and execute visible move on the board
+src/components/RaceToServersGame.tsx:470:    // For Hacker: visibly move on board now
+src/components/RaceToServersGame.tsx:487:  // Execute Hacker AI Move (Luck loop)
+src/components/RaceToServersGame.tsx:529:      // Check if hacker landed on a ladder (auto success)
+src/components/RaceToServersGame.tsx:533:          // Authentication & Passwords
+src/components/RaceToServersGame.tsx:539:          // Physical & Session Oversight
+src/components/RaceToServersGame.tsx:545:          // Social & Interpersonal
+src/components/RaceToServersGame.tsx:551:          // Network & Data Exposure
+src/components/RaceToServersGame.tsx:580:          // Active Student Defenses
+src/components/RaceToServersGame.tsx:586:          // Physical & Environmental Security
+src/components/RaceToServersGame.tsx:592:          // Platform & System Blocks
+src/components/RaceToServersGame.tsx:598:          // Comedic / Local Mishaps
+src/components/RaceToServersGame.tsx:632:  // Reset the Board Game
+src/components/RaceToServersGame.tsx:648:  // Color mappings for Light vs Dark theme aesthetics
+src/components/RaceToServersGame.tsx:654:  // Custom headers or highlights
+src/components/RaceToServersGame.tsx:746:              // Row - Col arithmetic for a 7x7 grid moving in an aesthetic snake path layout (Boustrophedon)
+src/components/RaceToServersGame.tsx:747:              const visualRowIndex = Math.floor(i / 7); // Row 0 is visual TOP, Row 6 is visual BOTTOM
+src/components/RaceToServersGame.tsx:749:              const actualRowIndexFromBottom = 6 - visualRowIndex; // Row 0 is bottom row (squares 1-7)
+src/components/RaceToServersGame.tsx:752:                ? (actualRowIndexFromBottom * 7) + (7 - relativeCol) // odd row maps right to left (indices start with row, offset by inverted column index)
+src/components/RaceToServersGame.tsx:753:                : (actualRowIndexFromBottom * 7) + (relativeCol + 1); // even row maps left to right
+src/components/RaceToServersGame.tsx:761:              // Grid Item colors depending on theme
+src/components/RaceToServersGame.tsx:772:                  ? 'bg-red-50 border-red-400 text-red-100 dark:text-red-800' // let's maintain simple readable text classes
+src/components/PasswordTester.tsx:32:  speed: number; // guesses per second
+src/components/PasswordTester.tsx:43:  // Compute presets representing different types of attacker guessing speeds
+src/components/PasswordTester.tsx:48:      speed: 0.16, // Approx 10 attempts per minute
+src/components/PasswordTester.tsx:54:      speed: 1000000, // 1 Million guesses/second
+src/components/PasswordTester.tsx:60:      speed: 25000000000, // 25 Billion guesses/second
+src/components/PasswordTester.tsx:66:      speed: 500000000000000, // 500 Trillion guesses/second
+src/components/PasswordTester.tsx:71:  const [selectedComputeIdx, setSelectedComputeIdx] = useState(1); // Standard Home Laptop by default
+src/components/PasswordTester.tsx:89:  // Human-friendly calculator without dry math equations
+src/components/PasswordTester.tsx:95:    // Determine Pools Size
+src/components/PasswordTester.tsx:123:    // Calculate Entropy (H) = Log2(AlphabetSize ^ Length) = Length * Log2(AlphabetSize)
+src/components/PasswordTester.tsx:126:    // Total combinations = AlphabetSize ^ Length
+src/components/PasswordTester.tsx:129:    // On average, an attacker scans half of the search space before succeeding
+src/components/PasswordTester.tsx:132:    // Seconds to crack = averageAttemptsNeeded / guessesPerSecond
+src/components/PasswordTester.tsx:135:    // Convert seconds to friendly human scale
+src/components/PasswordTester.tsx:138:    let scaleScore = 0; // rating out of 100
+src/components/PasswordTester.tsx:182:    // Nigerian-themed, human-friendly vulnerability checklist deduction
+src/components/PasswordTester.tsx:250:  // Color constants for theme-aware elements
+src/components/AcademyView.tsx:84:  const [courseToStart, setCourseToStart] = useState<Course | null>(null); // For the objectives popup
+src/components/AcademyView.tsx:94:    // Attempt to find matching course by title
+src/components/AcademyView.tsx:302:                const xpMultiplier = earnedXp; // Add XP
+src/components/AcademyView.tsx:320:              // Update profile with XP and record completion
+src/components/Onboarding.tsx:92:    // Limit to ~2MB for local storage efficiency
+src/components/Onboarding.tsx:146:    // Determine avatar ID:
+src/components/Onboarding.tsx:147:    // If user uploaded an image, it is stored as the avatarId directly.
+src/components/Onboarding.tsx:148:    // If not, randomly select one of the pixel-art IDs ('1' to '7')
+src/components/Onboarding.tsx:161:      xp: 50, // Welcome bonus!
+src/components/Onboarding.tsx:284:                        setName(e.target.value.replace(/[^a-zA-Z0-9_]/g, '')); // alphanumeric + underscore only
+src/components/GamesView.tsx:288:// ==========================================
+src/components/GamesView.tsx:289:// SUB GAME 1: PHISHTANK IMPLEMENTATION
+src/components/GamesView.tsx:290:// ==========================================
+src/components/GamesView.tsx:307:    body: 'Verify your ID card at our registration desk link: http://calebun1versity.edu.ng/verify',
+src/components/GamesView.tsx:327:    body: 'We are reviewing student accounts. View your outstanding portal ledger on: http://unilag-ledger-status.com/pay',
+src/components/GamesView.tsx:337:    body: 'Inspect your active semester listings at the standard portal line: https://portal.ui.edu.ng/courses',
+src/components/GamesView.tsx:473:  // New game states requested
+src/components/GamesView.tsx:486:  // Dynamic scoring states
+src/components/GamesView.tsx:574:  // Dynamic Audio Chimes & Dull Tones using Web Audio Synth API
+src/components/GamesView.tsx:585:      osc1.frequency.setValueAtTime(523.25, now); // C5 note
+src/components/GamesView.tsx:596:      osc2.frequency.setValueAtTime(659.25, now + 0.08); // E5 note
+src/components/GamesView.tsx:700:      // Calculate XP for this question
+src/components/GamesView.tsx:711:      // Mark as failed on first try
+src/components/GamesView.tsx:748:      // Completed Level Successfully! Update progress
+src/components/GamesView.tsx:760:      // Dynamic XP Calculation Engine (Applies to ALL Levels)
+src/components/GamesView.tsx:762:        return sum + (scenarioScores[s.id] || 0); // Correct on first try (8), retry (4), unanswered/skipped/quit (0)
+src/components/GamesView.tsx:781:          xp: prev.xp + totalLevelXp, // Award dynamic calculated XP
+src/components/GamesView.tsx:788:      // For level 3 finish, trigger explanation clarification pop-up
+src/components/GamesView.tsx:793:      // Show the victory container screen
+src/components/GamesView.tsx:807:  // If game onboarding sequence is running
+src/components/GamesView.tsx:931:  // SCREEN A: Level Selection Dashboard (Main Hub)
+src/components/GamesView.tsx:1045:  // SCREEN B: Victory Screen (Popup when level successfully cleared)
+src/components/GamesView.tsx:1138:  // Active Gameplay UI Frame
+src/components/GamesView.tsx:1407:                // Determine layout visual assets based on scenario ID
+src/components/GamesView.tsx:1415:                        destUrl: "http://uni-vouchers-meal-claim.tk/free-claim",
+src/components/GamesView.tsx:1423:                        destUrl: "http://blackboard-upgrade.mfa-helper.org/login",
+src/components/GamesView.tsx:1431:                        destUrl: "http://subsidies.fmg-nigeria.online/travel-subsidy",
+src/components/GamesView.tsx:1439:                        destUrl: "http://campus-connect-wifi.free-net-hub.top/connect",
+src/components/GamesView.tsx:1447:                        destUrl: "https://library.university.edu.ng/reserve",
+src/components/GamesView.tsx:1455:                        destUrl: "http://championship-registration.naija-gamer-hub.online/join",
+src/components/GamesView.tsx:1463:                        destUrl: "http://university-security-registration.info",
+src/components/GamesView.tsx:1562:                // Determine lockscreen system push or device verification layout
+src/components/GamesView.tsx:1723:                // Fallback rendering
+src/components/GamesView.tsx:1744:            onClick={() => handleDecision(true)} // 'Report' correlates to classification of IS phishing (true)
+src/components/GamesView.tsx:1750:            onClick={() => handleDecision(false)} // 'Trust' correlates to classification of SAFE (false)
+src/components/GamesView.tsx:1817:                  startLevel(activeLevel!, true); // bypass overview popup
+src/components/DashboardView.tsx:30:// Helper to look up Badge Icons
+src/components/DashboardView.tsx:55:// Staggered load animation variants setup
+src/components/DashboardView.tsx:87:  // Calculate XP requirements
+src/components/DashboardView.tsx:93:  // Math for Cyber Security Posture Percentage (KAP integration)
+src/components/DashboardView.tsx:96:  const gamesProgress = (profile.completedGames.length / 4) * 100; // 4 games: Phish Finder, Race to Servers, Cryptic Pulse, Password Tester
+src/components/DashboardView.tsx:99:  // Find user's avatar
+src/components/CrypticPulseGame.tsx:21:// 1. Core Encryption Engine
+src/components/CrypticPulseGame.tsx:25:    // Uppercase
+src/components/CrypticPulseGame.tsx:35:  // 3-letter
+src/components/CrypticPulseGame.tsx:39:  // 4-letter
+src/components/CrypticPulseGame.tsx:43:  // 5-letter
+src/components/CrypticPulseGame.tsx:47:  // 6-letter
+src/components/CrypticPulseGame.tsx:51:  // 7-letter
+src/components/CrypticPulseGame.tsx:55:  // 8-letter
+src/components/CrypticPulseGame.tsx:93:    // 0-4 words: encrypt only with +1
+src/components/CrypticPulseGame.tsx:97:    // 5-9 words: encrypt/decrypt +1 or -1
+src/components/CrypticPulseGame.tsx:101:    // 10-14 words: max +3 for encryption, min -3 for decryption
+src/components/CrypticPulseGame.tsx:103:    const mag = Math.floor(Math.random() * 3) + 1; // 1, 2, 3
+src/components/CrypticPulseGame.tsx:106:    // 15+ words: max +5 for encryption, min -5 for decryption
+src/components/CrypticPulseGame.tsx:108:    const mag = Math.floor(Math.random() * 5) + 1; // 1 to 5
+src/components/CrypticPulseGame.tsx:116:    // The user sees the plain word and applies the positive shiftKey
+src/components/CrypticPulseGame.tsx:122:    // mode === "decrypt"
+src/components/CrypticPulseGame.tsx:123:    // The user must apply the negative shiftKey to the displayed scrambled word to get the plain word
+src/components/CrypticPulseGame.tsx:125:    // If the user's shift is negative, it means: plainWord = displayedWord + shiftKey
+src/components/CrypticPulseGame.tsx:126:    // Therefore, displayedWord = plainWord - shiftKey
+src/components/CrypticPulseGame.tsx:170:  // Trigger auto-focus
+src/components/CrypticPulseGame.tsx:187:  // 2. The Timer & Game Loop Engine
+src/components/CrypticPulseGame.tsx:196:      // Award XP based on score
+src/components/CrypticPulseGame.tsx:210:            xp: prev.xp + score * 10, // 10 XP per packet
+src/components/CrypticPulseGame.tsx:634:  // Playing state
+src/index.css:1:@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+src/data.ts:403:* **Check for Leaks**: Enter your email into a trusted database like [Have I Been Pwned](https://haveibeenpwned.com/). If it flags a leak, change the password for that email immediately.
+src/data.ts:865:* **Confirm HTTPS and the Padlock**: Before typing passwords into any portal or bank website, shine your eye on the address bar. Ensure the URL starts with ***https://*** (not http. 's' means secure) and displays a closed padlock icon, proving your phone verified the server's real public key.`
+src/data.ts:1103:  // ==========================================
+src/data.ts:1104:  // LEVEL 1: DOMAIN TYPO CHECK (5 tasks)
+src/data.ts:1105:  // Focus: Sender address character spellings
+src/data.ts:1106:  // ==========================================
+src/data.ts:1188:  // ==========================================
+src/data.ts:1189:  // LEVEL 2: TRICKY WEB LINKS (8 tasks)
+src/data.ts:1190:  // Focus: Link Inspections (4 Email, 4 WhatsApp)
+src/data.ts:1191:  // ==========================================
+src/data.ts:1197:    body: 'Congrats! You have won a free 2-piece meal voucher from Chicken Republic. Click here to claim: http://chickenrepubl1c-rewards.net/claim',
+src/data.ts:1214:    body: 'Your e-Statement for May 2026 is ready. Log in to your mobile app or secure portal to view: https://www.gtbank.com/statements',
+src/data.ts:1231:    body: 'Your Spotify Premium subscription payment failed. Update your card details within 48 hours to keep listening: https://spotify-naija-update.com/billing',
+src/data.ts:1248:    body: 'Federal Government N50,000 Student Bursary Portal is now open for all Nigerian undergraduate students. Apply here: http://fed-bursary.gov.ng.portal-login.xyz',
+src/data.ts:1265:    body: 'NNPC is giving out 10,000 Liters of Free Fuel to celebrate Democracy Day! Click now to get your voucher before it ends: http://nnpc-free-fuel.com',
+src/data.ts:1282:    body: 'MTN Youth Day Celebration! Get 20GB Free Data valid for 30 days. Click here to activate your sim: http://mtn-20gb-free.data-promo.online',
+src/data.ts:1299:    body: 'Join our departmental study group on WhatsApp to share exam past questions: https://chat.whatsapp.com/Kj9x8yL2mN45bOpQ',
+src/data.ts:1316:    body: 'Bro, someone just sent N15,000 to your Moniepoint account by mistake. Confirm the transaction here to reject or accept it: https://moniepoint.verify-transfers.com',
+src/data.ts:1329:  // ==========================================
+src/data.ts:1330:  // LEVEL 3: MIND GAMES (8 tasks)
+src/data.ts:1331:  // Focus: Urgency threats, extreme coercive panic
+src/data.ts:1332:  // ==========================================
+src/data.ts:1402:    body: "Hey, a lecturer accidentally uploaded the final exam questions for next week to a hidden drive folder. Access it here: [http://uni-leaks-drive.tk](http://uni-leaks-drive.tk). Delete this chat and don't tell any of your classmates so the department doesn't find out and change the questions.",
+src/data.ts:1450:    body: "Earn N30,000 weekly doing simple online tasks from your hostel! Click here to set up your profile and link your bank app: [http://naija-student-gigs.com](http://naija-student-gigs.com). Note: This promo is strictly invite-only. Do not share this link or discuss it with others to ensure your slot is guaranteed.",
+src/data.ts:1801:      'Checking if the forum\'s web address starts with https://.',
+src/App.tsx:34:  // Load user profile and theme on startup
+src/App.tsx:55:  // Watch for level up
+src/App.tsx:78:  // Sync profile edits to localStorage
+src/App.tsx:92:      // Milestone conditions
+src/App.tsx:102:        setNewBadgeEarned(newlyEarnedBadges[0]); // Show the first newly earned badge
+src/App.tsx:147:  // Renders profile creator wizard if no user active
+src/App.tsx:175:  // Renders custom 4-phase gamified Induction Walkthrough right after registration
+src/App.tsx:188:              xp: prev.xp === 0 ? 50 : prev.xp, // Give 50 starting XP
+src/App.tsx:218:                Sentry Portal // <span className="text-[#58A6FF]">{activeTab}</span>

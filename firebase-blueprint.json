@@ -1,0 +1,34 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "The user's progress and stats in Aegis Academy.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The user's Firebase Auth UID" },
+        "defenderName": { "type": "string" },
+        "avatarId": { "type": "string" },
+        "xp": { "type": "number", "minimum": 0 },
+        "level": { "type": "number", "minimum": 1 },
+        "streak": { "type": "number", "minimum": 0 },
+        "badges": { "type": "array", "items": { "type": "string" } },
+        "completedQuizzes": { "type": "array", "items": { "type": "string" } },
+        "completedChecklist": { "type": "array", "items": { "type": "string" } },
+        "completedGames": { "type": "array", "items": { "type": "string" } },
+        "completedCourses": { "type": "array", "items": { "type": "string" } },
+        "university": { "type": "string" },
+        "completedWalkthrough": { "type": "boolean" },
+        "selectedLevel": { "type": "string", "enum": ["Newbie", "Beginner", "Intermediate"] },
+        "createdAt": { "type": "number", "description": "Timestamp of creation" },
+        "updatedAt": { "type": "number", "description": "Timestamp of last update" }
+      },
+      "required": ["uid", "defenderName", "avatarId", "xp", "level", "streak", "university", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "A collection containing user accounts and their progress."
+    }
+  }
+}

@@ -1,0 +1,64 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper Functions
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() { return request.auth != null && request.auth.token.email == 'admin@aegisacademy.com'; }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isOwner(userId) { return isSignedIn() && request.auth.uid == userId; }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'defenderName', 'avatarId', 'xp', 'level', 'streak', 'university', 'createdAt', 'updatedAt'])
+        && data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128
+        && data.defenderName is string && data.defenderName.size() >= 1 && data.defenderName.size() <= 128
+        && data.avatarId is string && data.avatarId.size() >= 1 && data.avatarId.size() <= 64
+        && data.xp is number
+        && data.level is number
+        && data.streak is number
+        && data.university is string && data.university.size() >= 1 && data.university.size() <= 200
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isUpdateUserAction() {
+      // Allow updates to any profile fields defined in the schema, except immutable ones
+      return incoming().diff(existing()).affectedKeys().hasOnly([
+        'defenderName', 'avatarId', 'xp', 'level', 'streak', 'university',
+        'updatedAt', 'badges', 'completedQuizzes', 'completedChecklist',
+        'completedGames', 'completedCourses', 'completedWalkthrough', 'selectedLevel'
+      ]);
+    }
+
+    match /appSettings/{document=**} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    match /users/{userId} {
+      // List: Allowed for authenticated users (public leaderboard)
+      // Get: Allowed for authenticated users
+      allow read: if isSignedIn();
+
+      allow create: if isOwner(userId)
+        && isValidUser(incoming())
+        && incoming().uid == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      allow update: if isOwner(userId)
+        && isValidUser(incoming())
+        && incoming().uid == existing().uid
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isUpdateUserAction()
+        );
+    }
+  }
+}
