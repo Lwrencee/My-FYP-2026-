@@ -244,7 +244,11 @@ export default function PasswordTester({ profile, updateProfile, theme = 'dark' 
         level: Math.max(prev.level, calculatedLevel)
       };
     });
-    setNotification('Security level approved! You earned +100 XP and unlocked the "Fortress Keymaker" badge!');
+    setNotification(
+      !profile.badges.includes('badge-password-shield')
+        ? 'Security level approved! You earned +100 XP and unlocked the "Fortress Keymaker" badge!'
+        : 'Security level approved! You earned +20 XP!'
+    );
   };
 
   // Color constants for theme-aware elements
@@ -516,7 +520,7 @@ export default function PasswordTester({ profile, updateProfile, theme = 'dark' 
                           onClick={handleApplyEarn}
                           className="w-full mt-2 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-xs transition-all cursor-pointer shadow border border-transparent"
                         >
-                          Certify This Configuration (+100 XP)
+                          Certify This Configuration (+{profile.badges.includes('badge-password-shield') ? 20 : 100} XP)
                         </button>
                       )}
                     </div>

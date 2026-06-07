@@ -606,7 +606,7 @@ export default function CrypticPulseGame({
           <span
             className={`text-xs mt-2 ${theme === "light" ? "text-slate-500" : "text-[#8B949E]"}`}
           >
-            +{score * 2} XP Earned
+            +{score * 10} XP Earned
           </span>
         </div>
         <div className="flex gap-4 justify-center pt-4">

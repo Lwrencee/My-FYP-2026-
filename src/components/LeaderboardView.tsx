@@ -9,7 +9,7 @@ import { Trophy, Award, Users, Shield, Sparkles, Star, Building2, Loader2 } from
 import { UserProfile, LeaderboardEntry } from '../types';
 import { INITIAL_LEADERBOARD, AVATARS } from '../data';
 import PixelAvatar from './PixelAvatar';
-import { collection, getDocs, orderBy, query, limit } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, limit, onSnapshot } from 'firebase/firestore';
 import { db, handleFirestoreError, OperationType, auth } from '../lib/firebase';
 
 interface LeaderboardViewProps {
@@ -42,50 +42,48 @@ export default function LeaderboardView({ profile, theme = 'dark' }: Leaderboard
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchLeaderboard() {
-      try {
-        const q = query(collection(db, 'users'), orderBy('xp', 'desc'), limit(100));
-        const querySnapshot = await getDocs(q);
+    setLoading(true);
+    const q = query(collection(db, 'users'), orderBy('xp', 'desc'), limit(100));
+    
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const fetched: LeaderboardEntry[] = [];
+      const currentUserUid = auth.currentUser?.uid;
+
+      querySnapshot.forEach((doc) => {
+        const data = doc.data() as UserProfile;
+        const isCurrentUser = Boolean(currentUserUid) && doc.id === currentUserUid;
         
-        const fetched: LeaderboardEntry[] = [];
-        const currentUserUid = auth.currentUser?.uid;
-
-        querySnapshot.forEach((doc) => {
-          const data = doc.data() as UserProfile;
-          const isCurrentUser = Boolean(currentUserUid) && doc.id === currentUserUid;
-          
-          fetched.push({
-            defenderName: isCurrentUser ? `${profile.defenderName} (You)` : data.defenderName,
-            avatarId: isCurrentUser ? profile.avatarId : data.avatarId,
-            xp: isCurrentUser ? profile.xp : data.xp,
-            level: isCurrentUser ? profile.level : data.level,
-            university: isCurrentUser ? (profile.university || data.university) : data.university,
-            isUser: isCurrentUser
-          });
+        fetched.push({
+          defenderName: isCurrentUser ? `${profile.defenderName} (You)` : data.defenderName,
+          avatarId: isCurrentUser ? profile.avatarId : data.avatarId,
+          xp: isCurrentUser ? profile.xp : data.xp,
+          level: isCurrentUser ? profile.level : data.level,
+          university: isCurrentUser ? (profile.university || data.university) : data.university,
+          isUser: isCurrentUser
         });
+      });
 
-        // Ensure current user is in the list locally if DB is out of sync or fresh
-        if (!fetched.find(u => u.isUser)) {
-           fetched.push({
-             defenderName: `${profile.defenderName} (You)`,
-             avatarId: profile.avatarId,
-             xp: profile.xp,
-             level: profile.level,
-             university: profile.university || 'Caleb University',
-             isUser: true
-           });
-           fetched.sort((a, b) => b.xp - a.xp);
-        }
-
-        setLeaderboardData(fetched);
-      } catch (e) {
-        handleFirestoreError(e, OperationType.LIST, 'users');
-      } finally {
-        setLoading(false);
+      // Ensure current user is in the list locally if DB is out of sync or fresh
+      if (!fetched.find(u => u.isUser)) {
+         fetched.push({
+           defenderName: `${profile.defenderName} (You)`,
+           avatarId: profile.avatarId,
+           xp: profile.xp,
+           level: profile.level,
+           university: profile.university || 'Caleb University',
+           isUser: true
+         });
+         fetched.sort((a, b) => b.xp - a.xp);
       }
-    }
 
-    fetchLeaderboard();
+      setLeaderboardData(fetched);
+      setLoading(false);
+    }, (e) => {
+      handleFirestoreError(e, OperationType.LIST, 'users');
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, [profile]);
 
   const sortedLeaderboard = leaderboardData;
