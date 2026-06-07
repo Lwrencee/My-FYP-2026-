@@ -17,7 +17,9 @@ import {
   X,
   Target,
   Trophy,
-  BookOpen
+  BookOpen,
+  Eye,
+  EyeOff
 } from 'lucide-react';
 import { AVATARS, NIGERIAN_UNIVERSITIES } from '../data';
 import { UserProfile } from '../types';
@@ -36,6 +38,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
   const [email, setEmail] = useState('');
   const [resetEmailSent, setResetEmailSent] = useState(false);
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
   const [name, setName] = useState('');
@@ -331,14 +334,23 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                     className="w-full px-4 py-3 bg-[#0D0F12] border border-[#30363D] rounded-lg text-[#F0F6FC] placeholder-[#8B949E] focus:outline-none focus:ring-2 focus:ring-[#58A6FF]/20 focus:border-[#58A6FF] text-sm font-semibold"
                   />
                   {authMode !== 'forgot-password' && (
-                    <input
-                      type="password"
-                      required
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter password"
-                      className="w-full px-4 py-3 bg-[#0D0F12] border border-[#30363D] rounded-lg text-[#F0F6FC] placeholder-[#8B949E] focus:outline-none focus:ring-2 focus:ring-[#58A6FF]/20 focus:border-[#58A6FF] text-sm font-semibold"
-                    />
+                    <div className="relative">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Enter password"
+                        className="w-full px-4 py-3 bg-[#0D0F12] border border-[#30363D] rounded-lg text-[#F0F6FC] placeholder-[#8B949E] focus:outline-none focus:ring-2 focus:ring-[#58A6FF]/20 focus:border-[#58A6FF] text-sm font-semibold pr-12"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8B949E] hover:text-[#F0F6FC] transition-colors p-1"
+                      >
+                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
                   )}
                   {(authMode === 'email-signin' || authMode === 'email-signup') && (
                     <div className="flex justify-end -mt-2">

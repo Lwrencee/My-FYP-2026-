@@ -127,8 +127,9 @@ export default function App() {
              });
           } else {
              // Profile updates
+             const { createdAt, ...profileUpdates } = profile as any;
              await setDoc(userDocRef, {
-               ...profile,
+               ...profileUpdates,
                uid: auth.currentUser.uid,
                updatedAt: serverTimestamp()
              }, { merge: true });

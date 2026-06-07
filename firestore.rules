@@ -17,7 +17,7 @@ service cloud.firestore {
       return data.keys().hasAll(['uid', 'defenderName', 'avatarId', 'xp', 'level', 'streak', 'university', 'createdAt', 'updatedAt'])
         && data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128
         && data.defenderName is string && data.defenderName.size() >= 1 && data.defenderName.size() <= 128
-        && data.avatarId is string && data.avatarId.size() >= 1 && data.avatarId.size() <= 64
+        && data.avatarId is string
         && data.xp is number
         && data.level is number
         && data.streak is number
@@ -30,7 +30,7 @@ service cloud.firestore {
       // Allow updates to any profile fields defined in the schema, except immutable ones
       return incoming().diff(existing()).affectedKeys().hasOnly([
         'defenderName', 'avatarId', 'xp', 'level', 'streak', 'university',
-        'updatedAt', 'badges', 'completedQuizzes', 'completedChecklist',
+        'updatedAt', 'createdAt', 'badges', 'completedQuizzes', 'completedChecklist',
         'completedGames', 'completedCourses', 'completedWalkthrough', 'selectedLevel'
       ]);
     }
