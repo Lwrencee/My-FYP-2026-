@@ -58,7 +58,6 @@ export default function Navbar({ activeTab, setActiveTab, profile, theme, toggle
             </div>
             <div>
               <h1 className="text-sm font-black tracking-widest text-[#F0F6FC] font-mono leading-none">AEGISACADEMY</h1>
-              <span className="text-[10px] text-[#8B949E] font-bold uppercase tracking-widest block mt-1 leading-none">Learning Platform</span>
             </div>
           </div>
           
