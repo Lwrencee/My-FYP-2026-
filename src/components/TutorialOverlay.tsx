@@ -18,7 +18,8 @@ const steps: Step[] = [
   { targetIds: ['nav-desktop-checklist', 'nav-mobile-checklist'], text: "The Cyber Checklist contains simple, real-world tasks to secure your accounts.", position: 'right' },
   { targetIds: ['nav-desktop-leaderboard', 'nav-mobile-leaderboard'], text: "Compete on the global Leaderboard to see how your rank compares to others.", position: 'right' },
   { targetIds: ['nav-desktop-profile', 'nav-mobile-profile'], text: "Lastly, visit your Profile Settings to customize your avatar, credentials, or reset your journey.", position: 'right' },
-  { targetIds: ['dashboard-xp-card'], text: "As you complete modules, you'll earn XP and level up. Good luck!", position: 'bottom' }
+  { targetIds: ['dashboard-xp-card'], text: "As you complete modules, you'll earn XP and level up. Good luck!", position: 'bottom' },
+  { targetIds: ['tutorial-button'], text: "If you ever get stuck or want a refresher, you can always restart this tutorial here.", position: 'bottom' }
 ];
 
 export default function TutorialOverlay({ onComplete }: { onComplete: () => void }) {

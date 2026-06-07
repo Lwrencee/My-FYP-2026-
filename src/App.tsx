@@ -325,6 +325,7 @@ export default function App() {
             {/* Tutorial Button */}
             {activeTab === 'dashboard' && (
               <button
+                id="tutorial-button"
                 onClick={() => setShowTutorial(true)}
                 className="px-4 py-1.5 rounded-lg bg-[#58A6FF]/10 border border-[#58A6FF]/30 hover:bg-[#58A6FF]/20 text-[#58A6FF] transition-all cursor-pointer flex items-center gap-1.5 text-xs font-bold select-none shadow-sm shrink-0"
                 title="Start Tutorial"
