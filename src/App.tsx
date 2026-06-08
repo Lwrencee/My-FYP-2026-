@@ -17,7 +17,7 @@ import AdminDashboard from './components/AdminDashboard';
 import { UserProfile } from './types';
 import { Sun, Moon, ArrowUpCircle, Trophy, Compass } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { getLevelTitle, BADGES } from './data';
+import { getLevelTitle, BADGES, calculateLevelFromXP } from './data';
 import TutorialOverlay from './components/TutorialOverlay';
 import { auth, db } from './lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -60,6 +60,11 @@ export default function App() {
           parsed.completedGames = sanitizedGames;
         }
 
+        const calculatedLevel = calculateLevelFromXP(parsed.xp);
+        if (calculatedLevel > parsed.level) {
+          parsed.level = calculatedLevel;
+        }
+
         setProfile(parsed);
         prevLevelRef.current = parsed.level;
       }
@@ -84,6 +89,13 @@ export default function App() {
             const userDoc = await getDoc(doc(db, 'users', user.uid));
             if (userDoc.exists()) {
                const data = userDoc.data() as UserProfile;
+               
+               const calculatedLevel = calculateLevelFromXP(data.xp);
+               if (calculatedLevel > data.level) {
+                 data.level = calculatedLevel;
+                 // Since we're fixing data silently here, we might not trigger a pop up.
+               }
+               
                setProfile(data);
                localStorage.setItem('defender_quest_profile', JSON.stringify(data));
                // If they just logged in and had data, go to dashboard
@@ -177,6 +189,11 @@ export default function App() {
     setProfile((prev) => {
       if (!prev) return prev;
       let next = typeof newProfileObjOrFn === 'function' ? newProfileObjOrFn(prev) : newProfileObjOrFn;
+      
+      const calculatedLevel = calculateLevelFromXP(next.xp);
+      if (calculatedLevel > next.level) {
+        next = { ...next, level: calculatedLevel };
+      }
       
       const newlyEarnedBadges: string[] = [];
       const checkAward = (id: string, satisfied: boolean) => {
