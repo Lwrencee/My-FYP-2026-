@@ -1291,7 +1291,7 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
                   The stage is set! You have been notified that a hacker is attempting to break into the school's ICT department and steal all the students' private information.
                 </p>
                 <p>
-                  But here is the good news: <strong>you has the power to stop them by making the right security choices!</strong> Safe choices will give you a dynamic boost, while poor mistakes will trigger hacker exploits that slide you backward.
+                  But here is the good news: <strong>you have the power to stop them by making the right security choices!</strong> Safe choices will give you a dynamic boost, while poor mistakes will trigger hacker exploits that slide you backward.
                 </p>
                 <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg text-xs leading-relaxed text-blue-500 font-bold text-center">
                   Let the race to the servers begin! ⚡🏁

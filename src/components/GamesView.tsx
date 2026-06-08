@@ -134,7 +134,7 @@ export default function GamesView({ profile, updateProfile, theme = 'dark', onAc
                   <Dice5 className="w-6 h-6 animate-pulse" />
                 </div>
                 <h3 className={`text-lg font-bold ${theme === 'light' ? 'text-slate-900' : 'text-[#F0F6FC]'}`}>
-                  Race to the School Servers! (Snake & Ladders)
+                  Race to the School Servers! (Snakes & Ladders)
                 </h3>
                 <p className={`text-xs mt-1 lines-clamp-3 ${theme === 'light' ? 'text-slate-600' : 'text-[#8B949E]'}`}>
                   A thrilling Board Game Race against a hacker bot! Answer secure-action questions to trigger shortcut boosts (Ladders) or defend against slip risks (Snakes) to lock down square 100 first!
