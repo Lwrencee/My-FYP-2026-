@@ -39,135 +39,160 @@ interface GameScenario {
   context: string;
   optionA: string;
   optionB: string;
-  correctOption: 'A' | 'B';
+  optionC?: string;
+  correctOption: 'A' | 'B' | 'C';
   explanation: string;
 }
 
-// 5 Ladder scenarios (Proactive defense)
+// 8 Ladder scenarios (Proactive defense)
 const LADDER_SCENARIOS: GameScenario[] = [
   {
     id: 'L1',
-    context: "The school announces a new rule: you must link your phone number to your portal to get a login code every time you sign in.",
-    optionA: "Set it up immediately to secure your account.",
-    optionB: "Ignore it until they force you to do it.",
-    correctOption: 'A',
-    explanation: "Multi-Factor Authentication (MFA) or Two-step Verification keeps your profile highly secure even if someone discovers your password."
+    context: "The school website now asks for your password plus a 6-digit code sent to your phone. Why does this actually keep you safe?",
+    optionA: "It scrambles your typing so anyone watching your screen cannot see your password.",
+    optionB: "Even if someone steals your password online, they can't log in without your physical phone.",
+    optionC: "It runs an automatic clean-up to erase dangerous files hidden on your device.",
+    correctOption: 'B',
+    explanation: "Passwords can be guessed or leaked. Requiring a code from your physical phone stops scammers from breaking into your profile from somewhere else!"
   },
   {
     id: 'L2',
-    context: "A notification pops up on your computer saying the system needs a critical software update to fix a security flaw.",
-    optionA: "Click 'Update Now' and let it restart.",
-    optionB: "Click 'Remind me in a week' to avoid the wait.",
+    context: "Your laptop alerts you about a \"critical system update.\" Why shouldn't you just click \"remind me in a week\"?",
+    optionA: "It patches up hidden software glitches before internet scammers can use them to break in.",
+    optionB: "It resets your network defense system to block unauthorized background connections.",
+    optionC: "It clears out tracking data that shady websites use to spy on your screen.",
     correctOption: 'A',
-    explanation: "Software patches stop active cybercriminal campaigns that exploit old system flaws."
+    explanation: "Think of an update like fixing a broken lock on your door. Delaying it leaves an open window for people to mess with your device."
   },
   {
     id: 'L3',
-    context: "You attend a campus talk on how online scammers trick students using fake phone calls and DMs.",
-    optionA: "Listen closely for tips on how to spot a fake caller.",
-    optionB: "Sit at the back and scroll on your phone the whole time.",
-    correctOption: 'A',
-    explanation: "Awareness is the strongest defense. Learning social engineering tricks protects both you and the network."
+    context: "You hear a campus safety speaker mention \"Social Engineering.\" What does this term mean?",
+    optionA: "A privacy setting that automatically blocks suspicious profiles on your social media feeds.",
+    optionB: "A data tracking system that schools use to monitor student online habits and behavior.",
+    optionC: "A trick where scammers use fake identities or urgent stories to lie and steal your data.",
+    correctOption: 'C',
+    explanation: "Social engineering targets people, not computers. It is often much easier to trick a person with a fake story than it is to hack into a system!"
   },
   {
     id: 'L4',
-    context: "A classmate invites you to join a student club focused on online safety and digital privacy.",
-    optionA: "Join to learn how to keep your data safe.",
-    optionB: "Decline because you aren't a computer science major.",
-    correctOption: 'A',
-    explanation: "Cybersecurity touches everyone, not just programmers. Safe practices benefit standard students everywhere."
+    context: "An art major says, \"I don't have anything valuable, so hackers won't bother targeting my accounts.\" Why is this wrong?",
+    optionA: "Scammers explicitly look for student art portfolios to lock them up and demand money.",
+    optionB: "Stolen student profiles are automatically used to send scams to the rest of the school.",
+    optionC: "Having an unsecure account will automatically crash the main school internet network.",
+    correctOption: 'B',
+    explanation: "Everyone is a target. Bad actors love using normal student accounts as a stepping stone to slip into the larger school network."
   },
   {
     id: 'L5',
-    context: "The school IT helpdesk asks for student volunteers to try out a brand-new, unhackable login system.",
-    optionA: "Volunteer to help make the school safer.",
-    optionB: "Say you're too busy with regular school assignments.",
-    correctOption: 'A',
-    explanation: "Testing new security technologies directly contributes to establishing bulletproof defenses on campus."
+    context: "The school IT desk is testing \"Passwordless Login\" using Face ID or fingerprints. What is the main safety benefit?",
+    optionA: "It completely stops your phone from connecting to dangerous websites.",
+    optionB: "It forces your apps to lock up your files before they get saved to the internet.",
+    optionC: "It stops scammers from using your old leaked passwords on other accounts.",
+    correctOption: 'C',
+    explanation: "Reusing the same simple password is a bad habit most of us have. Fingerprints and Face ID solve this by getting rid of typed passwords entirely."
+  },
+  {
+    id: 'L6',
+    context: "Why do safety experts warn against logging into private accounts while on free, public café Wi-Fi?",
+    optionA: "Open networks automatically copy your phone's digital ownership certificates.",
+    optionB: "People sharing the connection can use basic spying tools to see information you send.",
+    optionC: "Public internet routers can remotely unlock your phone’s biometric face scan.",
+    correctOption: 'B',
+    explanation: "Open Wi-Fi is like shouting your information across a crowded room. Use your phone's cellular data instead when typing things like passwords!"
+  },
+  {
+    id: 'L7',
+    context: "You see a warning that the school's \"Firewall\" blocked a connection. What does a firewall actually do?",
+    optionA: "It cleans out infected files that have already made it past your regular defenses.",
+    optionB: "It generates random lock keys to shield the physical storage drive inside your computer.",
+    optionC: "It acts like a digital security guard, checking web traffic and blocking anything suspicious.",
+    correctOption: 'C',
+    explanation: "A firewall is your first line of defense. It watches data going in and out and blocks untrusted sources before they can touch your device."
+  },
+  {
+    id: 'L8',
+    context: "A new viral app says it needs \"Full File Access\" permission just to edit a photo. What is the danger here?",
+    optionA: "The app can bypass your phone's store ratings to install nasty hidden programs.",
+    optionB: "You are giving the app creators permission to read and copy your private files.",
+    optionC: "The software rewires your phone settings to turn off your automatic system updates.",
+    correctOption: 'B',
+    explanation: "Apps often ask for way more access than they actually need to do their job. Always double-check what you are agreeing to share!"
   }
 ];
 
-// 5 Snake scenarios (Hazard - Defend or slide) + 2 New Snake scenarios
+// 8 Snake scenarios
 const SNAKE_SCENARIOS: GameScenario[] = [
   {
     id: 'S1',
-    context: "A flash drive labeled \"Exam Prep Materials\" is plugged into a library PC. The screen says: \"Run file to open.\"",
-    optionA: "Log off the PC immediately and report it to the front desk.",
-    optionB: "Open the file quickly to see if it's actually the real exam prep.",
-    correctOption: 'A',
-    explanation: "Never run unknown files, especially from strange flash drives. They could be malware intended to infect the school network."
+    context: "You get an urgent email from your \"bank\" asking you to update your profile. What is the most reliable way to check if it is a scam?",
+    optionA: "Look at the sender's profile picture to see if it matches the bank's official logo.",
+    optionB: "Check if the message uses your correct first name instead of a generic greeting.",
+    optionC: "Look closely at the sender's actual web address to see if the bank's name is misspelled.",
+    correctOption: 'C',
+    explanation: "Logos and names are easily faked. Checking the actual web link characters behind the sender name reveals who really sent it."
   },
   {
     id: 'S2',
-    context: "A classmate sends a link in the department WhatsApp group chat: \"The portal is crashing, use this backup link to upload the assignment!\"",
-    optionA: "Confirm with other students, the Class Rep, or the lecturer if there is a backup link.",
-    optionB: "Click the backup link immediately to submit before the deadline.",
-    correctOption: 'A',
-    explanation: "Always verify emergency links via official or trusted channels. Clicking unverified URLs is a common entry point for phishing and session hijackers."
+    context: "Your friend says downloading a free game file from a random forum is totally safe if your phone's scanner didn't flag it. Why is this wrong?",
+    optionA: "Phone security scanners are programmed to only check files bought from official app stores.",
+    optionB: "Brand-new malicious files can easily bypass basic scanners until the security system updates.",
+    optionC: "Downloading unverified files will instantly and permanently burn out your phone's processor chip.",
+    correctOption: 'B',
+    explanation: "Brand-new malware easily bypasses basic scanners. Unverified downloads are never completely safe."
   },
   {
     id: 'S3',
-    context: "A caller claiming to be from the school finance office says your scholarship will be canceled unless you verify your banking app right now.",
-    optionA: "Hang up and walk directly to the physical school finance building.",
-    optionB: "Give them the details since it’s a time-sensitive emergency.",
-    correctOption: 'A',
-    explanation: "Scammers use urgency to make you panic. Official channels will never demand immediate banking verification over the phone."
+    context: "What makes using a digital password manager application safer than writing your login details down in a standard notes app?",
+    optionA: "Password managers automatically hide your phone's screen from nearby people while you log in.",
+    optionB: "Password managers use advanced network signals to block hackers from guessing your accounts.",
+    optionC: "They securely lock your data behind a single master key and scramble the stored information.",
+    correctOption: 'C',
+    explanation: "Standard notes apps store text in plain view. If someone accesses your phone, they get everything. Password managers keep data locked and encrypted."
   },
   {
     id: 'S4',
-    context: "You see a trending broadcast text on WhatsApp: \"The NELFUND student loan portal has opened an emergency 24-hour extension registration link for this semester.\"",
-    optionA: "Go directly to the official government website by searching for it yourself.",
-    optionB: "Click the link in the broadcast message immediately to avoid missing out.",
+    context: "You post a trendy \"Get to know me\" challenge online listing your first pet's name and childhood school. Is this a security hazard?",
+    optionA: "Yes, because scammers use these specific personal details to guess your account safety questions.",
+    optionB: "Yes, because social media apps will automatically flag your profile as a bot and restrict your account.",
+    optionC: "No, because public posts are automatically filtered by your phone's built-in network firewall.",
     correctOption: 'A',
-    explanation: "Scammers use high-pressure broadcasts and student financial stress to push malicious clones. Always type official government domains directly."
+    explanation: "Cybercriminals research targets online. Scammers use these casual personal details to guess your security questions and bypass account recovery screens."
   },
   {
     id: 'S5',
-    context: "You are about to pay your school fees online, and a senior classmate offers to help you generate the Remita invoice using their own laptop to \"save time.\"",
-    optionA: "Insist on generating the payment invoice yourself on your own device.",
-    optionB: "Let them handle it since they have a faster network connection and know the system.",
-    correctOption: 'A',
-    explanation: "Never log into financial systems on someone else's device. They might have keyloggers or save your session information."
+    context: "Why do modern chat applications use \"End-to-End Encryption\" for sending messages and files?",
+    optionA: "It speeds up your cellular data network so large photos upload twice as fast.",
+    optionB: "It automatically deletes your chat history from your local device after 24 hours.",
+    optionC: "It scrambles the data so that anyone intercepting the internet signal cannot read the text.",
+    correctOption: 'C',
+    explanation: "Encryption scrambles your data so it can't be read if intercepted. Without it, your online info is open to anyone along the path."
   },
   {
     id: 'S6',
-    context: "You are using a library computer to study, and a pop-up appears stating: \"Your session is about to expire due to security updates. Type your student ID and password to extend your time.\"",
-    optionA: "Close the browser completely and log back in from a fresh window.",
-    optionB: "Type in your details quickly so you don't lose your unsaved study tabs.",
-    correctOption: 'A',
-    explanation: "Pop-ups asking for credentials are often credential harvesters. Always manually navigate to the login page."
+    context: "Why do hackers use automated software \"bots\" to attack student portals instead of targeting people manually?",
+    optionA: "Bots consume less electricity.",
+    optionB: "Bots can try thousands of stolen password combinations every second across multiple profiles at once.",
+    optionC: "Automated programs are legally allowed to bypass data privacy laws on public networks.",
+    correctOption: 'B',
+    explanation: "Bots automate the guessing process, testing thousands of stolen passwords every second to crack weak accounts instantly."
   },
   {
     id: 'S7',
-    context: "You notice a classmate typing in their password while a stranger is openly staring over their shoulder.",
-    optionA: "Politely whisper to them to block their screen.",
-    optionB: "Ignore it and mind your business.",
-    correctOption: 'A',
-    explanation: "Shoulder surfing is an easy way to steal passwords. Promoting awareness keeps everyone's accounts secure."
+    context: "Your laptop has a security feature that locks the screen after 2 minutes of inactivity. What major risk does this actually solve?",
+    optionA: "It stops your computer hardware from overheating when running heavy background apps.",
+    optionB: "It prevents dangerous websites from downloading hidden browser extensions while you are away.",
+    optionC: "It stops unauthorized people nearby from physically accessing your open data or logged-in accounts.",
+    correctOption: 'C',
+    explanation: "Digital defenses don't matter if a stranger can physically walk up to your unlocked device and access your info."
   },
   {
     id: 'S8',
-    context: "The heavy door to the campus computer lab is propped open with a trash can.",
-    optionA: "Move the trash can and pull the door shut so it locks.",
-    optionB: "Walk past and leave it wide open.",
-    correctOption: 'A',
-    explanation: "Physical security is the first line of defense! Leaving lab doors propped open allows unauthorized individuals to compromise physical machines."
-  },
-  {
-    id: 'S9',
-    context: "You get an urgent email from \"School Admin\" asking you to reply with your student portal password to fix an error.",
-    optionA: "Delete the email and log in directly through the school website.",
-    optionB: "Reply immediately with your password so you don't get locked out.",
-    correctOption: 'A',
-    explanation: "Admins will never ask for your password. This is phishing, an attempt to bypass security by inducing panic."
-  },
-  {
-    id: 'S10',
-    context: "You notice a strange, unlabeled black box with blinking lights plugged into the side of a library computer.",
-    optionA: "Tell the campus IT helpdesk right away.",
-    optionB: "Unplug it yourself and throw it in the trash.",
-    correctOption: 'A',
-    explanation: "Suspicious physical equipment could be automated hardware keyloggers. IT professionals should document and trace the origin safely."
+    context: "You find an unauthorized \"modded\" version of a premium app available for free on a random website. What is the main security risk?",
+    optionA: "The app store will remotely block your device from ever installing official software updates.",
+    optionB: "The developers likely injected hidden data-stealing code into the app before making it free.",
+    optionC: "Your phone's battery life will permanently drop to zero percent within a few days of use.",
+    correctOption: 'B',
+    explanation: "Free versions of paid apps are major traps. Fake clones are frequently used to harvest login details and spy on private device data."
   }
 ];
 
@@ -219,7 +244,7 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
   const [scenarioType, setScenarioType] = useState<'ladder' | 'snake' | null>(null);
   const [landmarkSquare, setLandmarkSquare] = useState<number>(1);
   const [destinationSquare, setDestinationSquare] = useState<number>(1);
-  const [selectedScenarioAnswer, setSelectedScenarioAnswer] = useState<'A' | 'B' | 'C' | null>(null);
+  const [selectedScenarioAnswer, setSelectedScenarioAnswer] = useState<'A' | 'B' | 'C' | 'IDK' | null>(null);
   const [scenarioAnswered, setScenarioAnswered] = useState<boolean>(false);
   const [scenarioSuccess, setScenarioSuccess] = useState<boolean>(false);
   const [usedLadderScenarios, setUsedLadderScenarios] = useState<string[]>([]);
@@ -405,7 +430,7 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
   };
 
   // Submit Answer in Scenario Modal
-  const handleScenarioAnswerSubmit = (option: 'A' | 'B' | 'C') => {
+  const handleScenarioAnswerSubmit = (option: 'A' | 'B' | 'C' | 'IDK') => {
     if (!currentScenario || scenarioAnswered) return;
 
     setSelectedScenarioAnswer(option);
@@ -419,7 +444,7 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
     if (!currentScenario || !scenarioType) return;
     
     const isCorrect = scenarioSuccess;
-    const option = selectedScenarioAnswer || 'C';
+    const option = selectedScenarioAnswer || 'IDK';
 
     setShowScenarioModal(false);
 
@@ -433,7 +458,7 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
           checkAndPassTurn();
         });
       } else {
-        const logMsg = option === 'C'
+        const logMsg = option === 'IDK'
           ? `ℹ️ You were unsure about the security choice at cell ${landmarkSquare}, so you standardly stayed at square ${landmarkSquare}.`
           : `ℹ️ You missed the security boost opportunity at cell ${landmarkSquare}, but did not fall. You remain at cell ${landmarkSquare}.`;
         setGameLogs(prev => [logMsg, ...prev]);
@@ -447,7 +472,7 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
         ]);
         checkAndPassTurn();
       } else {
-        const logMsg = option === 'C'
+        const logMsg = option === 'IDK'
           ? `🟥 SLIDED! You were unsure how to defend at square ${landmarkSquare}. The hacker circumvented your undecided status and you slipped backward to square ${destinationSquare}!`
           : `🟥 SLIDED! The hacker bypassed defenses at square ${landmarkSquare} because of a lapse. You slipped backward to square ${destinationSquare}!`;
         setGameLogs(prev => [logMsg, ...prev]);
@@ -656,7 +681,7 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
   const descriptionText = theme === 'light' ? 'text-slate-600' : 'text-[#8B949E]';
   const primaryButton = theme === 'light' ? 'bg-blue-600 hover:bg-blue-500 text-white' : 'bg-[#58A6FF] hover:bg-[#58A6FF]/95 text-[#0D0F12]';
 
-  const getButtonClass = (opt: 'A' | 'B') => {
+  const getButtonClass = (opt: 'A' | 'B' | 'C') => {
     if (!currentScenario) return '';
     const isThisCorrect = currentScenario.correctOption === opt;
     if (!scenarioAnswered) {
@@ -669,7 +694,7 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
         ? 'bg-emerald-500/15 border-emerald-500 text-emerald-600 dark:text-emerald-400'
         : 'bg-rose-500/15 border-rose-500 text-rose-600 dark:text-rose-400';
     }
-    if (isThisCorrect && selectedScenarioAnswer === 'C') {
+    if (isThisCorrect && selectedScenarioAnswer === 'IDK') {
       return 'bg-emerald-500/10 border-emerald-400 text-emerald-600 dark:text-emerald-400 border-dashed';
     }
     return theme === 'light'
@@ -677,13 +702,13 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
       : 'opacity-40 bg-[#0D0F12] border-[#30363D] text-slate-650 pointer-events-none';
   };
 
-  const getOptionCClass = () => {
+  const getIdkButtonClass = () => {
     if (!scenarioAnswered) {
       return theme === 'light'
         ? 'bg-slate-50 border-slate-250 hover:bg-slate-100/70 text-slate-800'
         : 'bg-[#0D0F12] border-[#30363D] hover:border-[#8B949E]/30 text-[#F0F6FC]';
     }
-    if (selectedScenarioAnswer === 'C') {
+    if (selectedScenarioAnswer === 'IDK') {
       return 'bg-blue-500/15 border-blue-500 text-blue-600 dark:text-blue-550';
     }
     return theme === 'light'
@@ -991,10 +1016,23 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
                   </div>
                 </button>
 
+                {currentScenario.optionC && (
+                  <button
+                    disabled={scenarioAnswered}
+                    onClick={() => handleScenarioAnswerSubmit('C')}
+                    className={`w-full text-left p-4 rounded-xl border text-xs sm:text-xs.5 font-bold transition-all relative cursor-pointer ${getButtonClass('C')}`}
+                  >
+                    <div className="flex gap-2">
+                      <span className="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0 border border-blue-500/10 font-black">C</span>
+                      <span>{currentScenario.optionC}</span>
+                    </div>
+                  </button>
+                )}
+
                 <button
                   disabled={scenarioAnswered}
-                  onClick={() => handleScenarioAnswerSubmit('C')}
-                  className={`w-full text-left p-4 rounded-xl border text-xs sm:text-xs.5 font-bold transition-all relative cursor-pointer ${getOptionCClass()}`}
+                  onClick={() => handleScenarioAnswerSubmit('IDK')}
+                  className={`w-full text-left p-4 rounded-xl border text-xs sm:text-xs.5 font-bold transition-all relative cursor-pointer ${getIdkButtonClass()}`}
                 >
                   <div className="flex gap-2">
                     <span className="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0 border border-blue-500/10 font-black">?</span>
@@ -1017,7 +1055,7 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
                           <CheckCircle2 className="w-4.5 h-4.5 text-[#3FB950] shrink-0" />
                           <span>Safe Decision! Well Observed.</span>
                         </div>
-                      ) : selectedScenarioAnswer === 'C' ? (
+                      ) : selectedScenarioAnswer === 'IDK' ? (
                         <div className="flex items-center gap-1 text-blue-600 dark:text-blue-500 font-extrabold text-xs">
                           <HelpCircle className="w-4.5 h-4.5 text-blue-500 shrink-0" />
                           <span>Safest Practice Lesson:</span>
@@ -1035,7 +1073,7 @@ export default function RaceToServersGame({ profile, updateProfile, theme = 'dar
                         ? theme === 'light' 
                           ? 'bg-emerald-50 border-emerald-200 text-slate-750' 
                           : 'bg-emerald-500/5 border-emerald-500/10 text-slate-300'
-                        : selectedScenarioAnswer === 'C'
+                        : selectedScenarioAnswer === 'IDK'
                           ? theme === 'light'
                             ? 'bg-blue-55 border-blue-200 text-slate-750'
                             : 'bg-blue-500/5 border-blue-500/10 text-slate-350'
