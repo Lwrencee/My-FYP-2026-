@@ -204,13 +204,13 @@ export default function App() {
       };
 
       // Milestone conditions
-      checkAward('badge-first-course', next.completedQuizzes.length >= 1);
+      checkAward('badge-first-course', Math.max((next.completedCourses?.length || 0), next.completedQuizzes.length) >= 1);
       checkAward('badge-first-task', next.completedChecklist.length >= 1);
       checkAward('badge-level-5', next.level >= 5);
       checkAward('badge-level-10', next.level >= 10);
       checkAward('badge-checklist-complete', next.completedChecklist.length >= 8);
-      checkAward('badge-academy-scholar', next.completedQuizzes.length >= 9);
-      checkAward('badge-100-percent', next.completedGames.length >= 4 && next.completedChecklist.length >= 8 && next.completedQuizzes.length >= 9);
+      checkAward('badge-academy-scholar', Math.max((next.completedCourses?.length || 0), next.completedQuizzes.length) >= 9);
+      checkAward('badge-100-percent', next.completedGames.length >= 4 && next.completedChecklist.length >= 8 && Math.max((next.completedCourses?.length || 0), next.completedQuizzes.length) >= 9);
 
       if (newlyEarnedBadges.length > 0) {
         setNewBadgeEarned(newlyEarnedBadges[0]); // Show the first newly earned badge

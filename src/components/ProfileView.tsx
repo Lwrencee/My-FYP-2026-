@@ -173,7 +173,7 @@ export default function ProfileView({ profile, updateProfile, onReset, setTab }:
 
   // Math totals for achievements certification
   const checklistCount = profile.completedChecklist.length;
-  const academyCount = profile.completedQuizzes.length;
+  const academyCount = Math.max((profile.completedCourses?.length || 0), profile.completedQuizzes.length);
   const gamesCount = profile.completedGames.length;
   const isEligibleForCert = checklistCount >= 2 && academyCount >= 1 && gamesCount >= 1;
 

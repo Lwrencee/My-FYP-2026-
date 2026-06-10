@@ -92,7 +92,8 @@ export default function DashboardView({ profile, setTab }: DashboardViewProps) {
 
   // Math for Cyber Security Posture Percentage (KAP integration)
   const checklistProgress = (profile.completedChecklist.length / 8) * 100;
-  const academyProgress = (profile.completedQuizzes.length / 9) * 100;
+  const academyScore = Math.max((profile.completedCourses?.length || 0), profile.completedQuizzes.length);
+  const academyProgress = (academyScore / 9) * 100;
   const gamesProgress = (profile.completedGames.length / 4) * 100; // 4 games: Phish Finder, Race to Servers, Cryptic Pulse, Password Tester
   const overallPosture = Math.round((checklistProgress * 0.4) + (academyProgress * 0.4) + (gamesProgress * 0.2));
 
@@ -211,7 +212,7 @@ export default function DashboardView({ profile, setTab }: DashboardViewProps) {
           <div className="w-full space-y-3 border-t border-[#30363D] pt-6 max-w-md mx-auto">
             <div className="flex justify-between items-center text-sm">
               <span className="text-[#8B949E] font-medium">Academy Courses Complete</span>
-              <span className="font-bold text-[#F0F6FC] font-mono">{profile.completedQuizzes.length} / 9</span>
+              <span className="font-bold text-[#F0F6FC] font-mono">{Math.max((profile.completedCourses?.length || 0), profile.completedQuizzes.length)} / 9</span>
             </div>
             <div className="flex justify-between items-center text-sm">
               <span className="text-[#8B949E] font-medium">Real-World Tasks Active</span>
