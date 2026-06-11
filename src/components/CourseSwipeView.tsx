@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import { Course } from '../types';
@@ -21,6 +21,24 @@ export default function CourseSwipeView({ course, onClose, onComplete, theme = '
   const [earnedInteractiveXp, setEarnedInteractiveXp] = useState(0);
   const [showCompletion, setShowCompletion] = useState(false);
   const lessons = course.lessons;
+  const audioTimeRef = useRef<number>(0);
+  const videoTimeRef = useRef<number>(0);
+
+  const handleTimeUpdateAudio = (e: React.SyntheticEvent<HTMLAudioElement>) => {
+    audioTimeRef.current = e.currentTarget.currentTime;
+  };
+
+  const handleTimeUpdateVideo = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    videoTimeRef.current = e.currentTarget.currentTime;
+  };
+
+  const handleAudioLoad = (e: React.SyntheticEvent<HTMLAudioElement>) => {
+    e.currentTarget.currentTime = audioTimeRef.current;
+  };
+
+  const handleVideoLoad = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    e.currentTarget.currentTime = videoTimeRef.current;
+  };
 
   if (!lessons || lessons.length === 0) {
     return (
@@ -757,7 +775,14 @@ export default function CourseSwipeView({ course, onClose, onComplete, theme = '
                       </p>
                       
                       {course.audioSrc ? (
-                        <audio controls src={course.audioSrc} onEnded={handleMediaFinish} className="w-full mb-10" />
+                        <audio 
+                          controls 
+                          src={course.audioSrc} 
+                          onEnded={handleMediaFinish} 
+                          onTimeUpdate={handleTimeUpdateAudio}
+                          onLoadedMetadata={handleAudioLoad}
+                          className="w-full mb-10" 
+                        />
                       ) : (
                         <div className={`w-full p-4 mb-10 rounded-xl text-center text-sm font-semibold border ${theme === 'light' ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-amber-900/20 text-amber-400 border-amber-900/40'}`}>
                           Audio coming soon. Check back later!
@@ -789,7 +814,14 @@ export default function CourseSwipeView({ course, onClose, onComplete, theme = '
                     <div className={`flex flex-col items-center justify-center p-6 rounded-[2rem] border ${theme === 'light' ? 'bg-slate-50 border-slate-200' : 'bg-[#0D0F12] border-[#30363D]'}`}>
                       {course.videoSrc ? (
                         <div className="w-full aspect-video rounded-xl overflow-hidden mb-8 border border-[#30363D]/30 shadow-lg bg-black">
-                          <video controls src={course.videoSrc} onEnded={handleMediaFinish} className="w-full h-full object-cover" />
+                          <video 
+                            controls 
+                            src={course.videoSrc} 
+                            onEnded={handleMediaFinish} 
+                            onTimeUpdate={handleTimeUpdateVideo}
+                            onLoadedMetadata={handleVideoLoad}
+                            className="w-full h-full object-cover" 
+                          />
                         </div>
                       ) : (
                         <div className="flex flex-col items-center justify-center w-full aspect-video mb-8">
