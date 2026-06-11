@@ -44,6 +44,9 @@ export interface Lesson {
   duration: string;
   content: string; // Markdown / Text content
   interactiveCheck?: InteractiveCheck;
+  illustrationType?: 'cia-triad' | 'bot-attack' | 'security-measures' | 'phishing-email' | 'smishing-text' | 'scam-warning' | 'password-strength' | 'brute-force' | 'password-manager' | 'footprint-types' | 'data-scraping' | 'privacy-settings' | 'social-manipulation' | 'verify-identity' | 'mfa-factors' | 'authenticator-app';
+  audioSrc?: string; // Optional path to audio file
+  videoSrc?: string; // Optional path to video file
 }
 
 export interface QuizQuestion {
@@ -63,6 +66,8 @@ export interface Course {
   xpWorth: number;
   learningObjectives?: string[];
   lessons: Lesson[];
+  audioSrc?: string;
+  videoSrc?: string;
   quiz: {
     id: string;
     xpWorth: number;

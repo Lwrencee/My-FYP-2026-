@@ -142,6 +142,8 @@ export const COURSES: Course[] = [
     description: 'Learn the core principles of digital safety and why it matters.',
     iconName: 'Shield',
     xpWorth: 100,
+    audioSrc: '/Intro_To_Cyber_Security (1).mp3',
+    videoSrc: '/Intro_To_Cyber_Security (1).mp4',
     learningObjectives: [
       'Define cybersecurity and its three fundamental pillars: Confidentiality, Integrity, and Availability (the CIA triad).',
       'Why students are targeted by automated hackers, even if they aren’t billionaires.',
@@ -163,7 +165,8 @@ export const COURSES: Course[] = [
 * **_Integrity_**: Keeping your data accurate and untampered with.
 * **_Availability_**: Ensuring you always have access.
 
-In the tech space, we call this the **CIA triad.**`
+In the tech space, we call this the **CIA triad.**`,
+        illustrationType: 'cia-triad'
       },
       {
         id: 'intro-cyber-2',
@@ -200,7 +203,8 @@ In the tech space, we call this the **CIA triad.**`
         duration: '1 min',
         content: `A lot of Nigerian undergraduates look at hackers in movies and think, "Who am I that anyone would want to hack me? I don't have billions in my account." _My friend, change that mindset o!_ \n\nAccording to research, a massive **63% of Nigerian university students** have already fallen victim to at least one form of cyber-attack. 
 
-The biggest mistake is assuming a hacker sits down to target you manually. _No be so!_ Modern hackers use automated tools that scan the entire internet 24/7, looking for any vulnerable device or account. \n\nThese bots don't care if you are a billionaire or a broke student; if your virtual door is unlocked, they will slide in.`
+The biggest mistake is assuming a hacker sits down to target you manually. _No be so!_ Modern hackers use automated tools that scan the entire internet 24/7, looking for any vulnerable device or account. \n\nThese bots don't care if you are a billionaire or a broke student; if your virtual door is unlocked, they will slide in.`,
+        illustrationType: 'bot-attack'
       },
       {
         id: 'intro-cyber-4-2',
@@ -220,7 +224,8 @@ The biggest mistake is assuming a hacker sits down to target you manually. _No b
 
 * **Shine Your Eye on Public Wi-Fi**: Never connect to free Wi-Fi without a password or a padlock icon next to it. Person fit use am log into your backend and steal your info!
 
-* **Update Apps Regularly**: Update your apps regularly. Those updates contain vital security patches that fix hidden security issues. If you need to save data (which most of us do), focus on system updates and the core apps you use the most.`
+* **Update Apps Regularly**: Update your apps regularly. Those updates contain vital security patches that fix hidden security issues. If you need to save data (which most of us do), focus on system updates and the core apps you use the most.`,
+        illustrationType: 'security-measures'
       },
       {
         id: 'intro-cyber-6',
@@ -244,6 +249,8 @@ The biggest mistake is assuming a hacker sits down to target you manually. _No b
     description: 'Learn to identify deceptive messages, fake links, and social traps.',
     iconName: 'Search',
     xpWorth: 100,
+    audioSrc: '/Phishing_Smishing_Basics (1).mp3',
+    videoSrc: '/Phishing_Smishing_Basics (1).mp4',
     learningObjectives: [
       'Spot the difference between email scams, text message scams, and highly targeted attacks.',
       'Know why these scams are getting harder to spot.',
@@ -255,6 +262,7 @@ The biggest mistake is assuming a hacker sits down to target you manually. _No b
         id: 'phishing-1',
         title: 'Introduction',
         duration: '1 min',
+        illustrationType: 'phishing-email',
         content: `Welcome to your next lesson, cadet. Today, we are looking at the oldest trick in the cybercriminal handbook: **_Phishing_** and its annoying sibling, **_Smishing_**. \n\nIn plain terms, phishing is when cybercriminals send fraudulent messages disguised as trusted organizations to trick you into revealing sensitive data like passwords, OTPs, or bank pins. When this digital trap happens via SMS or WhatsApp instead of email, it is called **_Smishing_** (SMS Phishing).`
       },
       {
@@ -288,6 +296,7 @@ Think of it like a fake Instagram vendor selling an impossibly cheap "London-use
         id: 'phishing-4',
         title: 'Why It Matters',
         duration: '2 min',
+        illustrationType: 'scam-warning',
         content: `Many students think phishing is easy to spot because they expect terrible grammar or obvious warning signs. _E no always dey obvious o!_ \n\nOne research paper revealed that **over 56% of users** click a phishing link at some point because attackers are getting incredibly smart with their lures. Another study highlights that people are highly vulnerable to these traps during high-stress periods, like just before exams, or while doing a lot of work.
 
 Automated software bots blast these tailored messages to thousands of students simultaneously.`
@@ -296,6 +305,7 @@ Automated software bots blast these tailored messages to thousands of students s
         id: 'phishing-4-2',
         title: 'Real-World Consequences',
         duration: '1 min',
+        illustrationType: 'smishing-text',
         content: `They can craft a fake university portal login page that looks identical to the real one, claiming your emergency continuous assessment marks or semester results are out. If you type your credentials, they will hijack your portal or take over your linked WhatsApp account to scam your family for money. \n\nWorse, they can impersonate a GTB or Access Bank support agent over SMS, claiming your account is blocked. If you panic and click, _omo, your allowance fit don go like that._`
       },
       {
@@ -331,6 +341,8 @@ Automated software bots blast these tailored messages to thousands of students s
     description: 'Master the science of passphrases to defeat brute force attacks.',
     iconName: 'Key',
     xpWorth: 100,
+    audioSrc: '/Strong___Weak_Passwords (1).mp3',
+    videoSrc: '/Strong___Weak_Passwords (1).mp4',
     learningObjectives: [
       'What a password is and why it\'s your digital key to your accounts.',
       'How to spot the difference between a weak password and a strong one.',
@@ -354,6 +366,7 @@ Automated software bots blast these tailored messages to thousands of students s
         id: 'passwords-2',
         title: 'Explanation',
         duration: '2 min',
+        illustrationType: 'password-strength',
         content: `When it comes to digital defense, we look at keys in two ways: weak passwords and strong passwords. 
 
 * **Weak Passwords**: These are short and predictable, relying on things like your name, favorite football club, or birthdate. It’s like locking your hostel room with a cheap luggage padlock. Anyone with a basic pair of pliers can snap it in two seconds!
@@ -383,6 +396,7 @@ Automated software bots blast these tailored messages to thousands of students s
         id: 'passwords-4',
         title: 'Why It Matters',
         duration: '1 min',
+        illustrationType: 'brute-force',
         content: `Many people think adding a single capital letter or an exclamation mark to their password makes their account uncrackable. Think again!
 According to data from research papers on password strength analysis, short passwords—even those stuffed with complex symbols—are incredibly easy for computers to crack. \n\nHackers don't sit down and guess your password character by character. Instead, they use automated software bots to test billions of common word combinations and leaked credentials in seconds.`
       },
@@ -396,6 +410,7 @@ According to data from research papers on password strength analysis, short pass
         id: 'passwords-5',
         title: 'What You Can Do',
         duration: '2 min',
+        illustrationType: 'password-manager',
         content: `You can upgrade your security setup right now by adopting these behaviors:
 
 * **Embrace Passphrases**: Instead of complex nonsense like P@$$w0rd1!, combine four or five random words (e.g., MyMumsJollofIsTheBest). It’s easy to visualize, but takes a computer centuries to guess.
@@ -431,6 +446,8 @@ According to data from research papers on password strength analysis, short pass
     description: 'Understand the traces you leave online and how to manage them.',
     iconName: 'Footprints',
     xpWorth: 100,
+    audioSrc: '/Digital_Footprints (1).mp3',
+    videoSrc: '/Digital_Footprints (1).mp4',
     learningObjectives: [
       'Define what a digital footprint is and what makes it permanent.',
       'Differentiate between the two main types of digital footprints: active & passive',
@@ -448,6 +465,7 @@ According to data from research papers on password strength analysis, short pass
         id: 'footprints-2',
         title: 'Explanation',
         duration: '2 min',
+        illustrationType: 'footprint-types',
         content: `In simple terms, a digital footprint is the permanent history of your activities left behind on the internet. It has two main types:
 * **Active Footprint**: Data you intentionally leave behind, like Instagram posts, tweets, and WhatsApp status updates.
 * **Passive Footprint**: Data collected behind the scenes without your input, like websites tracking your location, IP address, or browsing cookies.`
@@ -481,6 +499,7 @@ According to data from research papers on password strength analysis, short pass
         id: 'footprints-4',
         title: 'Why It Matters',
         duration: '1 min',
+        illustrationType: 'data-scraping',
         content: `Many students assume their digital trail doesn't matter because they aren't public figures or influencers. But cybercriminals don't just look for credit card numbers; they look for data patterns to exploit.
 
 Automated data-scraping bots constantly comb through public social media accounts to harvest personal information. One research paper focused on college campuses highlighted how students frequently underestimate how much an attacker can learn about them just by aggregating their public likes, comments, and location check-ins.`
@@ -497,6 +516,7 @@ Furthermore, future employers and scholarship boards now routinely use automated
         id: 'footprints-5',
         title: 'What You Can Do',
         duration: '2 min',
+        illustrationType: 'privacy-settings',
         content: `Take control of your data trail right now by following these steps:
 * **The Billboard Test**: Before uploading a photo or hot take, pause. Ask: "Would I be comfortable seeing this on a massive billboard?" _If no, no post am!_
 * **Audit Privacy Settings**: Change your Instagram, TikTok, and WhatsApp settings from "Public" to "Friends Only" to stop automated scraping bots from harvesting your life.
@@ -525,6 +545,8 @@ Furthermore, future employers and scholarship boards now routinely use automated
     description: 'Discover how hackers exploit human psychology and urgency.',
     iconName: 'Users',
     xpWorth: 100,
+    audioSrc: '/Social_Engineering (1).mp3',
+    videoSrc: '/Social_Engineering (1).mp4',
     learningObjectives: [
       'Define social engineering and how it manipulates human psychology.',
       'Identify common social engineering techniques like Vishing, Pretexting, and Spoofing.',
@@ -542,6 +564,7 @@ Furthermore, future employers and scholarship boards now routinely use automated
         id: 'social-eng-2',
         title: 'Explanation',
         duration: '2 min',
+        illustrationType: 'social-manipulation',
         content: `Here are some types of manipulation hackers rely on:
 * **Phishing & Smishing**: Fake emails (Phishing) or SMS texts (Smishing) designed to trick you into revealing sensitive data or sending money.
 * **Vishing (Voice Phishing)**: Phishing over any voice medium (like phone or video calls). Scammers calling to trick people—_they’ve called you before, shey?_ That's Vishing.
@@ -591,6 +614,7 @@ If the secretary doesn't verify the claim, they will melt under the professional
         id: 'social-eng-6',
         title: 'What You Can Do',
         duration: '2 min',
+        illustrationType: 'verify-identity',
         content: `To secure yourself against these mind games, you have to use specific behavior change techniques to rewrite how you react to digital alerts:
 * **Build a 60-Second Pause Habit**: When a message demands urgent action regarding money or passwords, deliberately force yourself to pause for one full minute. Social engineering relies on panic; breaking the time loop breaks the spell. 
 * **Never Share OTPs & PINs**: Never share your OTP, password, or PIN with anyone over the phone. Real banks never ask for this. (For example, Sterling Bank explicitly states they will never ask for your PIN.) 
@@ -619,6 +643,8 @@ If the secretary doesn't verify the claim, they will melt under the professional
     description: 'Establish absolute protection beyond simple passcodes.',
     iconName: 'ShieldCheck',
     xpWorth: 100,
+    audioSrc: '/Multi-Factor_Authentication (1).mp3',
+    videoSrc: '/Multi-Factor_Authentication (1).mp4',
     learningObjectives: [
       'Understand what Multi-Factor Authentication (MFA) is and why it\'s essential for online safety.',
       'Identify the three simple ways to prove your identity for security.',
@@ -636,6 +662,7 @@ If the secretary doesn't verify the claim, they will melt under the professional
         id: 'mfa-2',
         title: 'Explanation',
         duration: '2 min',
+        illustrationType: 'mfa-factors',
         content: `We are all used to just entering our passwords to get verified. But MFA takes this a step further by forcing you to prove your identity using more than just your password.
 MFA uses any combination of these three fundamental pillars of identity proof:
 
@@ -691,6 +718,7 @@ If an impersonator shows up with just the password, _the bouncer go shift the pe
         id: 'mfa-6',
         title: 'What You Can Do',
         duration: '2 min',
+        illustrationType: 'authenticator-app',
         content: `You can use the behavioral science principle of establishing secure digital defaults by going into your settings and locking your accounts right now:
 
 * **Lock WhatsApp with Two-Step Verification**: Open your WhatsApp, Go to Settings -> Account -> Two-Step Verification, and create a 6-digit PIN. This ensures that a fraudster cannot clone your account without this PIN. 
@@ -717,9 +745,11 @@ If an impersonator shows up with just the password, _the bouncer go shift the pe
     id: 'course-crypto-symmetric',
     title: 'Cryptography Basics Pt. 1 (Symmetric)',
     level: 'advanced',
-    description: 'Dive into secure key encryption, standard codes, and the challenge of safe key exchange.',
+    description: '(Coming Soon) Dive into secure key encryption, standard codes, and the challenge of safe key exchange.',
     iconName: 'Lock',
     xpWorth: 100,
+    audioSrc: '/Symmetric_Encryption (1).mp3',
+    videoSrc: '/Symmetric_Encryption (1).mp4',
     learningObjectives: [
       'What "cryptography" means and why people use it for secret communication.',
       'How data is turned into an unreadable mess (encryption) and back again (decryption) using a single key.',
@@ -737,6 +767,7 @@ If an impersonator shows up with just the password, _the bouncer go shift the pe
         id: 'crypto-sym-2',
         title: 'Explanation',
         duration: '2 min',
+        illustrationType: 'symmetric-keys',
         content: `Encryption means transforming readable data (Plaintext) into an unreadable mess to prevent people from reading the message (Ciphertext). Decryption means turning that mess back into the original message. Symmetric means the system uses a single secret key to both encrypt and decrypt the information.\n\n* “I am a boy” (Plaintext) gets turned into:\n* “SXC!tT2#S” (ciphertext), and vice versa.\n* You use one key to encrypt the message, and the same key to decrypt it.`
       },
       {
@@ -799,7 +830,7 @@ If an impersonator shows up with just the password, _the bouncer go shift the pe
     id: 'course-crypto-asymmetric',
     title: 'Cryptography Basics Pt. 2 (Asymmetric)',
     level: 'advanced',
-    description: 'Understand public and private key pairs, secure handshakes, and how they protect web traffic.',
+    description: '(Coming Soon) Understand public and private key pairs, secure handshakes, and how they protect web traffic.',
     iconName: 'KeyRound',
     xpWorth: 100,
     learningObjectives: [
@@ -819,6 +850,7 @@ If an impersonator shows up with just the password, _the bouncer go shift the pe
         id: 'crypto-asym-2',
         title: 'Explanation',
         duration: '2 min',
+        illustrationType: 'asymmetric-keys',
         content: `Asymmetric encryption is a security system that does not rely on a single shared key. Instead, it uses two mathematically linked keys that work as a team:
 * **The Public Key**: This key is out in the open for the whole world to see. Anyone on the internet can use it to lock (encrypt) a message meant specifically for you.
 * **The Private Key**: This key stays strictly hidden inside your device’s secure hardware. It is the only key in existence that can unlock (decrypt) what your open public key locks.`
@@ -859,6 +891,7 @@ If an impersonator shows up with just the password, _the bouncer go shift the pe
         id: 'crypto-asym-4-2',
         title: 'Real-World Consequences',
         duration: '2 min',
+        illustrationType: 'hacker-mitm',
         content: `The real danger comes from hackers using automated tools to hijack the path your data travels. If you connect to a free, unsecured campus Wi-Fi, the hacker can act like a fake middleman. It secretly attempts to swap out the legitimate public keys of your bank or school portal with a clone public key belonging to the attacker. \n\nIf your device blindly accepts that fake key, the hacker sits right between you and the website, quietly intercepting your login details and copying your data in real time.`
       },
       {
@@ -888,7 +921,7 @@ If an impersonator shows up with just the password, _the bouncer go shift the pe
     id: 'course-dark-web',
     title: 'Dark Web Basics',
     level: 'advanced',
-    description: 'Uncover what really goes on in the hidden parts of the web, and how your data might end up there.',
+    description: '(Coming Soon) Uncover what really goes on in the hidden parts of the web, and how your data might end up there.',
     iconName: 'Globe',
     xpWorth: 100,
     learningObjectives: [
@@ -908,6 +941,7 @@ If an impersonator shows up with just the password, _the bouncer go shift the pe
         id: 'dark-web-2',
         title: 'Explanation',
         duration: '2 min',
+        illustrationType: 'dark-web-layers',
         content: `To understand the internet, you must view it in three distinct layers:\n\n* **The Surface Web**: The visible tip of an iceberg. This includes any public website you can easily find using a standard search engine like Google without needing a password, like Wikipedia or a news article.\n* **The Deep Web**: The massive, hidden portion below the surface. It isn't sinister; it’s simply the private, password-protected web. Every time you log in to check your email, view your Access Bank statement, or check university grades, you are using the Deep Web.\n* **The Dark Web**: A very small, isolated corner of the Deep Web that intentionally hides ownership and hosting. You cannot use Chrome or Safari here; you need specialized software like the Tor browser. It is used for both intense privacy and illegal activities.`
       },
       {
@@ -945,6 +979,7 @@ If an impersonator shows up with just the password, _the bouncer go shift the pe
         id: 'dark-web-5',
         title: 'Real-World Consequences',
         duration: '2 min',
+        illustrationType: 'credential-leak',
         content: `When global apps or university databases experience a security breach, cybercriminals use automated scripts to package millions of stolen usernames and passwords into "combo lists." These lists are uploaded straight to anonymous dark web marketplaces for malicious actors to trade.\n\nIf you reuse the same weak password across your school portal, WhatsApp, and banking apps, an automated system can cross-reference your leaked credentials. A hacker who has never met you can buy your compromised data off an unindexed forum and log directly into your financial apps to clear your allowance.`
       },
       {

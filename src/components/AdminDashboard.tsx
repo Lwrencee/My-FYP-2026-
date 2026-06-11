@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Shield, Users, Trophy, Settings, Loader2, Save, LogOut } from 'lucide-react';
+import { Shield, Users, Trophy, Settings, Loader2, Save, LogOut, UploadCloud, Copy, Check, ShieldAlert } from 'lucide-react';
 import { collection, getDocs, doc, getDoc, setDoc, orderBy, query } from 'firebase/firestore';
-import { db, auth, handleFirestoreError, OperationType } from '../lib/firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { db, auth, storage, handleFirestoreError, OperationType } from '../lib/firebase';
 import { signOut } from 'firebase/auth';
+import { COURSES } from '../data';
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState<any[]>([]);
@@ -12,6 +14,14 @@ export default function AdminDashboard() {
   const [helpText, setHelpText] = useState("If you need assistance, please consult the academy handbook or reach out to an instructor.");
   const [savingSettings, setSavingSettings] = useState(false);
   const [showSignOutConfirm, setShowSignOutConfirm] = useState(false);
+
+  // Upload state
+  const [uploadFile, setUploadFile] = useState<File | null>(null);
+  const [uploadProgress, setUploadProgress] = useState(-1);
+  const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [selectedCourseId, setSelectedCourseId] = useState<string>('');
+  const [mediaType, setMediaType] = useState<'audio' | 'video'>('audio');
 
   useEffect(() => {
     async function fetchData() {
@@ -57,6 +67,50 @@ export default function AdminDashboard() {
   const handleLogout = async () => {
     await signOut(auth);
     window.location.reload();
+  };
+
+  const handleFileUpload = async () => {
+    if (!uploadFile || !selectedCourseId) return;
+    
+    // Create a reference to the file in Firebase Storage
+    const storageRef = ref(storage, `course_media/${Date.now()}_${uploadFile.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, uploadFile);
+
+    setUploadProgress(0);
+    setUploadedUrl(null);
+    setUploadError(null);
+
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setUploadProgress(progress);
+      },
+      (error) => {
+        console.error("Upload error:", error);
+        setUploadError(error.message || "Failed to upload the file. Make sure Firebase Storage is enabled in your project.");
+        setUploadProgress(-1);
+      },
+      async () => {
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        
+        // Save to Firestore
+        try {
+          const docId = selectedCourseId;
+          const currentDocRef = doc(db, 'courseMedia', docId);
+          await setDoc(currentDocRef, {
+            [mediaType + 'Src']: downloadURL
+          }, { merge: true });
+          
+          setUploadedUrl(downloadURL);
+        } catch(e: any) {
+          console.error("Error saving to firestore", e);
+          setUploadError(`Storage upload succeeded, but Firestore update failed: ${e.message || "Permission denied."}`);
+        }
+        
+        setUploadProgress(-1);
+        setUploadFile(null);
+      }
+    );
   };
 
   if (loading) {
@@ -195,6 +249,100 @@ export default function AdminDashboard() {
                <p className="text-xs text-[#8B949E] leading-relaxed">
                  You are logged in as the global administrator. You have read access to all user profiles and write access to global platform configurations. Changes to the platform settings will immediately reflect in the users' Profile tabs.
                </p>
+            </div>
+
+            {/* Media Uploader Section */}
+            <div className="flex items-center gap-2 bg-[#161B22] p-4 rounded-xl border border-[#30363D] text-[#BC8CFF] mt-6">
+              <UploadCloud className="w-5 h-5" />
+              <h2 className="text-lg font-bold text-[#F0F6FC]">Media Uploader</h2>
+            </div>
+
+            <div className="bg-[#161B22] border border-[#30363D] rounded-xl p-5 space-y-5 shadow-xl">
+              <p className="text-xs text-[#8B949E] leading-relaxed">
+                Upload your course media (Audio / Video) completely remotely! Select the specific course, then upload the file. It will automatically sync to the academy app.
+              </p>
+              
+              <div className="space-y-4">
+                {/* Select Course */}
+                <div>
+                  <label className="block text-xs font-bold text-[#8B949E] uppercase tracking-wider mb-2">
+                    1. Select Course
+                  </label>
+                  <select 
+                    value={selectedCourseId}
+                    onChange={(e) => setSelectedCourseId(e.target.value)}
+                    className="w-full bg-[#0D0F12] border border-[#30363D] rounded-lg p-3 text-sm text-[#F0F6FC] focus:outline-none focus:border-[#58A6FF]"
+                  >
+                    <option value="">-- Choose Course --</option>
+                    {COURSES.map(c => (
+                      <option key={c.id} value={c.id}>{c.title}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Media Type & Upload */}
+                {selectedCourseId && (
+                  <div className="pt-2 border-t border-[#30363D]">
+                    <label className="block text-xs font-bold text-[#8B949E] uppercase tracking-wider mb-2">
+                      2. Media Type
+                    </label>
+                    <div className="flex gap-4 mb-4">
+                      <label className="flex items-center gap-2 text-sm text-[#F0F6FC]">
+                        <input type="radio" name="mediaType" checked={mediaType === 'audio'} onChange={() => setMediaType('audio')} />
+                        Audio
+                      </label>
+                      <label className="flex items-center gap-2 text-sm text-[#F0F6FC]">
+                        <input type="radio" name="mediaType" checked={mediaType === 'video'} onChange={() => setMediaType('video')} />
+                        Video
+                      </label>
+                    </div>
+
+                    <input 
+                      type="file" 
+                      accept={mediaType === 'audio' ? "audio/*" : "video/*"}
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          setUploadFile(e.target.files[0]);
+                        }
+                      }}
+                      className="block w-full text-sm text-[#8B949E] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-[#30363D] file:text-[#F0F6FC] hover:file:bg-[#8B949E] hover:file:text-[#0D0F12] transition-all mb-4"
+                    />
+                    <button
+                      onClick={handleFileUpload}
+                      disabled={!uploadFile || uploadProgress >= 0}
+                      className="w-full py-2 bg-[#58A6FF] hover:bg-[#58A6FF]/90 disabled:opacity-50 disabled:bg-[#30363D] disabled:text-[#8B949E] text-[#0D0F12] rounded-lg text-sm font-black transition-all flex items-center justify-center gap-2"
+                    >
+                      {uploadProgress >= 0 ? `Uploading & Saving... ${Math.round(uploadProgress)}%` : 'Upload and Link Media'}
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {uploadProgress >= 0 && (
+                <div className="w-full bg-[#0D0F12] rounded-full h-2 border border-[#30363D] overflow-hidden">
+                  <div className="bg-[#58A6FF] h-2 rounded-full transition-all duration-300" style={{ width: `${uploadProgress}%` }}></div>
+                </div>
+              )}
+
+              {uploadError && (
+                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg flex items-start gap-3">
+                  <ShieldAlert className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-bold text-red-400 uppercase tracking-wider">Upload Failed</p>
+                    <p className="text-xs text-red-300">{uploadError}</p>
+                  </div>
+                </div>
+              )}
+
+              {uploadedUrl && (
+                <div className="p-3 bg-[#0D0F12] border border-[#30363D] rounded-lg flex items-start gap-3">
+                  <Check className="w-5 h-5 text-[#3FB950] shrink-0 mt-0.5" />
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-bold text-[#3FB950] uppercase tracking-wider">Save Successful</p>
+                    <p className="text-xs text-[#8B949E]">The media has been linked to the selected course section.</p>
+                  </div>
+                </div>
+              )}
             </div>
 
           </div>

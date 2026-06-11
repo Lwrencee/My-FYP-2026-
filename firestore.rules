@@ -40,6 +40,11 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    match /courseMedia/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
     match /users/{userId} {
       // List: Allowed for authenticated users (public leaderboard)
       // Get: Allowed for authenticated users

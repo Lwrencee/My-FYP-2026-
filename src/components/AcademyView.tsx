@@ -9,6 +9,8 @@ import { UserProfile, Course } from '../types';
 import { COURSES } from '../data';
 import CourseSwipeView from './CourseSwipeView';
 import * as Icons from 'lucide-react';
+import { collection, getDocs, query } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 interface AcademyViewProps {
   profile: UserProfile;
@@ -83,6 +85,32 @@ export default function AcademyView({ profile, updateProfile, theme = 'dark', on
   const [activeCourse, setActiveCourse] = useState<Course | null>(null);
   const [courseToStart, setCourseToStart] = useState<Course | null>(null); // For the objectives popup
   const [showFinalQuiz, setShowFinalQuiz] = useState<boolean>(false);
+  const [courseMedia, setCourseMedia] = useState<{ [key: string]: { audioSrc?: string, videoSrc?: string } }>({});
+
+  useEffect(() => {
+    async function fetchCourseMedia() {
+      try {
+        const q = query(collection(db, 'courseMedia'));
+        const snapshot = await getDocs(q);
+        const mediaMap: any = {};
+        snapshot.forEach(doc => {
+          mediaMap[doc.id] = doc.data();
+        });
+        setCourseMedia(mediaMap);
+      } catch (e) {
+        console.error("Failed to fetch course media", e);
+      }
+    }
+    fetchCourseMedia();
+  }, []);
+
+  const getEnrichedCourse = (course: Course): Course => {
+    return {
+      ...course,
+      audioSrc: courseMedia[course.id]?.audioSrc || course.audioSrc,
+      videoSrc: courseMedia[course.id]?.videoSrc || course.videoSrc,
+    };
+  };
 
   useEffect(() => {
     if (onActiveStateChange) {
@@ -99,9 +127,9 @@ export default function AcademyView({ profile, updateProfile, theme = 'dark', on
     const matchedCourse = COURSES.find(c => c.title === topicName);
     if (matchedCourse) {
       if (matchedCourse.learningObjectives && matchedCourse.learningObjectives.length > 0) {
-        setCourseToStart(matchedCourse);
+        setCourseToStart(getEnrichedCourse(matchedCourse));
       } else {
-        setActiveCourse(matchedCourse);
+        setActiveCourse(getEnrichedCourse(matchedCourse));
       }
     }
   };
