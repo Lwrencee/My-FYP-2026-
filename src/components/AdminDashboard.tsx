@@ -66,7 +66,8 @@ export default function AdminDashboard() {
 
   const handleLogout = async () => {
     await signOut(auth);
-    window.location.reload();
+    // Removed window.location.reload() to prevent sandbox crashes.
+    // App.tsx handles onAuthStateChanged.
   };
 
   const handleFileUpload = async () => {

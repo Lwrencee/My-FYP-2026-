@@ -589,7 +589,8 @@ export default function ProfileView({ profile, updateProfile, onReset, setTab }:
                   try {
                     await signOut(auth);
                     localStorage.removeItem('defender_quest_profile');
-                    window.location.reload();
+                    // Removed window.location.reload() to prevent sandbox crashes. 
+                    // onAuthStateChanged in App.tsx handles the state update cleanly.
                   } catch (e) {
                     console.error("Sign out fail", e);
                   }
